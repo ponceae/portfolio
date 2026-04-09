@@ -1,47 +1,150 @@
+/*
+ * Author: Adrien P.
+ */
+
 html {
     scroll-behavior: smooth;
-    height: 100%
 }
 
 body {
-    margin: 0;
-    height: 100%; 
     display: flex;
     flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 nav {
-    position: sticky;
-    top: 0;
     background: white;
     border-bottom: 2px transparent;
-    z-index: 1000;
     padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-p {
-    text-align: center;
-}
-
-h1 {
+h1, p {
     text-align: center;
 }
 
 footer {
+    align-items: center;
+    background: white;
+    bottom: 0;    
     display: flex;
     flex-direction: row;
+    font-style: italic;
+    font-weight: light;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: sticky;
-    bottom: 0;
-    background: linear-gradient(to bottom, #f0f0f0, #ffffff);
-    border-bottom: 2px solid;
     padding: 10px 20px;
+    position: sticky;
+    text-align: center;    
+}
+
+.about {
+    line-height: 1.6;
+    max-width: 900px;    
+    margin: 0 auto;
+    text-align: center;
+    width: 60%;
+}
+
+.about p {
+    font-size: 20px;
+    overflow-wrap: normal;
+    word-wrap: normal;    
+}
+
+.contact {
+    background: linear-gradient(to bottom, white, #f0f0f0);
+}
+
+.hero {
+    background: linear-gradient(to bottom, #f0f0f0, white);
+    color: black;
+    text-align: center;
+}
+
+.hero p {
+    font-size: 17.5px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    list-style: none;
+    margin: 0;    
+    padding: 0;
+}
+
+.nav-links li a {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    color: rgb(36, 36, 255);
+}
+
+.projects h2 {
+    text-decoration: underline;
+    text-underline-position: under, top;
+}
+
+.projects-desc li {
+    list-style: none;
+    text-align: center;
+    padding-bottom: 15px;
+    font-size: 17.5px;
+}
+
+.resume a {
+    text-decoration: none;
+}
+
+.skills-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.skills-desc {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.skills-desc li {
+    width: calc(25% - 30px);
+    display: flex;
+    justify-content: center;
+}
+
+.skills-imgs {
+    height: 90px;
+    width: auto;
+}
+
+h2 a:hover {
+    color: rgb(36, 36, 255);
 }
 
 .scroll-container {
     flex: 1;
+    margin: 0;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 }
@@ -55,45 +158,4 @@ footer {
     flex-direction: column;
     padding: 0 20px;
     box-sizing: border-box;
-}
-
-.hero {
-    background: linear-gradient(to bottom, #f0f0f0, #ffffff);
-    color: black;
-    text-align: center;
-}
-
-.about {
-    max-width: 900px;
-    width: 60%;
-    margin: 0 auto;
-    line-height: 1.6;
-    text-align: center;
-}
-
-.about p {
-    word-wrap: normal;
-    overflow-wrap: normal;
-    font-size: 20px;
-}
-
-.nav-links {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    list-style: none;
-    gap: 30px;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links li a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.nav-links li a:hover {
-    color: blue;
 }
