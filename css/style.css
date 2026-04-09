@@ -63,6 +63,10 @@ footer {
     background: linear-gradient(to bottom, white, #f0f0f0);
 }
 
+.contact-link a {
+    text-decoration: none;
+}
+
 .hero {
     background: linear-gradient(to bottom, #f0f0f0, white);
     color: black;
@@ -106,8 +110,19 @@ footer {
     font-size: 17.5px;
 }
 
-.resume a {
-    text-decoration: none;
+.contact-link {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 50px;
+    margin: 0;
+    justify-content: center;
+}
+
+.contact-link-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .skills-list {
