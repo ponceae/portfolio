@@ -1,108 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <title>Adrien Ponce Portfolio</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>   
-        <!-- Top Navigation Bar -->   
-        <nav> 
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+  <head>
+  <meta charset="utf-8">
+  <title>Adrien Ponce Portfolio</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>   
+    <!-- Top Navigation Bar -->   
+    <nav> 
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="scroll-container">
+            
+      <!-- Appears on Open -->
+      <header class="section hero">
+        <h1>Hello, I'm Adrien</h1>
+        <p>Welcome to My Portfolio</p>
+      </header>
+            
+      <section id="about" class="section about">
+        <h2>About Me</h2>
+        <p>
+          I am a computer science graduate looking to utilize the skills I have 
+          learned in my academic experience. I excel in the development of 
+          Python, Java, and C, while also being proficient in SQL querying. I am 
+          seeking entry-level full-time jobs within the domain of software 
+          development and information technology. I am driven to continuously 
+          and tenaciously expand my skill set, while also exploring emerging 
+          technologies in order to deliver innovative solutions to emerging 
+          problems. I consistently meet deadlines with precision and am eager 
+          to contribute my aptitudes.
+        </p>
+      </section> <!-- End of about section. -->
+            
+      <section id="projects" class="section projects">
+        <h2>Projects</h2>
+        <h3>Blackjack</h3>
+        <ul class="projects-desc">
+          <li>
+            Built a single-deck Blackjack game in Python with full 
+            gameplay mechanics including splitting, doubling down, insurance,
+            and accurate payout handling
+          </li>
+          <li>
+            Used dataclasses and modular design to separate game logic from
+            the CLI interface
+          </li>
+          <li>
+            Implemented JSON based persistence to maintain player state 
+            across sessions
+          </li>
+          <li>
+            Expanding the project into a web application using Flask with a 
+            JavaScript/HTML frontend
+          </li>
+        </ul>
+      </section> <!-- End of projects section. -->
+            
+      <section id="skills" class="section skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+          <ul class="skills-desc">
+            <li><img class="skills-imgs" src="images/py_sym.png" alt="Python"></li>
+            <li><img class="skills-imgs" src="images/java_sym.png" alt="Java"></li>
+            <li><img class="skills-imgs" src="images/c_sym.png" alt="C"></li>
+            <li><img class="skills-imgs" src="images/ruby_sym.png" alt="Ruby"></li>
+            <li><img class="skills-imgs" src="images/js_sym.png" alt="JavaScript"></li>
+            <li><img class="skills-imgs" src="images/sql_sym.png" alt="SQL"></li>
+            <li><img class="skills-imgs" src="images/git_sym.png" alt="Git"></li>
+            <li><img class="skills-imgs" src="images/wp_sym.png" alt="Windows Powershell"></li>
+            <li><img class="skills-imgs" src="images/bash_sym.png" alt="Linux Bash"></li>
+            <li><img class="skills-imgs" src="images/ms365_sym.png" alt="Microsoft 365"></li>
+            <li><img class="skills-imgs" src="images/html_sym.png" alt="HTML"></li>
+            <li><img class="skills-imgs" src="images/css_sym.png" alt="CSS"></li>
+          </ul>
+        </div> <!-- End of skills-list div -->
+      </section> <!-- End of skills section -->
+
+      <section id="contact" class="section contact">
+          <h2>Contact</h2>
+          <div class="contact-link-cont">
+            <ul class="contact-links">
+              <li><a href="src/resume_adrien_ponce.pdf" target="_blank" rel="noopener">Resume</a></li>
+              <li><a href="https://github.com/ponceae" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://linkedin.com/in/adrienponce"target="_blank" rel="noopener">LinkedIn</a></li>
             </ul>
-        </nav>
-            
-        <section class="scroll-container">
-            
-            <!-- Appears on Open -->
-            <header class="section hero">
-                <h1>Hello, I'm Adrien</h1>
-                <p>Welcome to My Portfolio</p>
-            </header>
-            
-            <section id="about" class="section about">
-                <h1>About Me</h1>
-                <p>
-                    I am a computer science graduate looking to utilize the skills I have 
-                    learned in my academic experience. I excel in the development of 
-                    Python, Java, and C, while also being proficient in SQL querying. I am 
-                    seeking entry-level full-time jobs within the domain of software 
-                    development and information technology. I am driven to continuously 
-                    and tenaciously expand my skill set, while also exploring emerging 
-                    technologies in order to deliver innovative solutions to emerging 
-                    problems. I consistently meet deadlines with precision and am eager 
-                    to contribute my aptitudes.</p>
-            </section>
-            
-            <section id="projects" class="section projects">
-                <h1>Projects</h1>
-                <h2>Blackjack</h2>
-                <ul class="projects-desc">
-                    <li>
-                        Built a single-deck Blackjack game in Python with full 
-                        gameplay mechanics including splitting, doubling down, insurance,
-                        and accurate payout handling
-                    </li>
-                    <li>
-                        Used dataclasses and modular design to separate game logic from
-                        the CLI interface
-                    </li>
-                    <li>
-                        Implemented JSON based persistence to maintain player state 
-                        across sessions
-                    </li>
-                    <li>
-                        Expanding the project into a web application using Flask with a 
-                        JavaScript/HTML frontend
-                    </li>
-                </ul>
-            </section>
-            
-            <section id="skills" class="section skills">
-                <h1>Skills</h1>
-                <section class="skills-list">
-                <ul class="skills-desc">
-                    <li><img class="skills-imgs" src="images/py_sym.png" alt="Python"></li>
-                    <li><img class="skills-imgs" src="images/java_sym.png" alt="Java"></li>
-                    <li><img class="skills-imgs" src="images/c_sym.png" alt="C"></li>
-                    <li><img class="skills-imgs" src="images/ruby_sym.png" alt="Ruby"></li>
-                    <li><img class="skills-imgs" src="images/js_sym.png" alt="JavaScript"></li>
-                    <li><img class="skills-imgs" src="images/sql_sym.png" alt="SQL"></li>
-                    <li><img class="skills-imgs" src="images/git_sym.png" alt="Git"></li>
-                    <li><img class="skills-imgs" src="images/wp_sym.png" alt="Windows Powershell"></li>
-                    <li><img class="skills-imgs" src="images/bash_sym.png" alt="Linux Bash"></li>
-                    <li><img class="skills-imgs" src="images/ms365_sym.png" alt="Microsoft 365"></li>
-                    <li><img class="skills-imgs" src="images/html_sym.png" alt="HTML"></li>
-                    <li><img class="skills-imgs" src="images/css_sym.png" alt="CSS"></li>
-                </ul>
-                </section>
-            </section>
+          </div> <!-- End of contact-list-cont section -->
+        </section> <!-- End of contact section -->
+        
+      </section> <!-- End of scroll-container section -->
 
-            <section id="contact" class="section contact">
-                <h1>Contact</h1>
-                <section class="contact-link-cont">
-                <h2 class="contact-link">
-                    <a href="src/resume_adrien_ponce.pdf" 
-                    target="_blank">Resume</a>
-                </h2>
-                <h2 class="contact-link"><a href="https://github.com/ponceae"
-                    target="_blank">GitHub</a>
-                </h2>
-                <h2 class="contact-link"><a href="https://linkedin.com/in/adrienponce"
-                    target="_blank">LinkedIn</a>
-                </h2>
-                </section>
-            </section>
-        </section>
-
-        <footer>Property of Adrien Ponce</footer>    
-    </body>
+    <footer>Property of Adrien Ponce</footer>    
+  </body>
 </html>

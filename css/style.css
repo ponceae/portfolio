@@ -2,6 +2,12 @@
     -- MAIN --
    ============ */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
   margin: 0;
@@ -10,15 +16,41 @@ html {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: block;
+  height: auto;
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
 }
 
+h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
 h1, 
+h2,
+h3,
 p {
   text-align: center;
 }
@@ -29,8 +61,9 @@ p {
 
 .scroll-container {
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-snap-type: y mandatory;
+  height: 100vh; /* DO NOT REMOVE BREAKS SCROLL CONTAINER */
 }
 
 .section {
@@ -39,9 +72,9 @@ p {
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  height: 100%;  
-  box-sizing: border-box;
+  height: 100vh;  
   scroll-snap-align: start;  
+  scroll-snap-stop: always;
 }
 
 /* ====================
@@ -50,16 +83,18 @@ p {
 
 nav,
 footer {
-  background: #FFFF;
+  background: white;
   padding: 10px 20px;
   text-align: center;
 }
 
 nav {
+  padding: 12px 20px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 2px transparent;
+  border-bottom: 2px solid transparent;
+  overflow: visible;
 }
 
 footer {
@@ -77,7 +112,7 @@ footer {
 
 .nav-links {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: center;
   gap: 30px;
   list-style: none;
@@ -89,7 +124,9 @@ footer {
   color: black;
   font-size: 18px;
   font-weight: bold;
+  line-height: 1.6;
   text-decoration: none;
+  transition: color 0.1s ease;
 }
 
 .nav-links a:hover,
@@ -126,6 +163,8 @@ h2 a:hover {
 }
 
 .contact {
+  justify-content: center;
+  padding-bottom: 40px;
   background: linear-gradient(to bottom, white, #f0f0f0);
 }
 
@@ -152,13 +191,11 @@ h2 a:hover {
 .contact-link-cont {
   display: flex;
   justify-content: center;
-  max-width: 100%;
 }
   
 .skills-desc,
-.contact-link {
+.contact-links {
   display: flex;
-  flex-direction: row;
   gap: 30px;
   margin: 0;
   padding: 0;
@@ -184,12 +221,29 @@ h2 a:hover {
     -- CONTACT --
    =============== */
 
-.contact-link {
+.contact-links {
+  font-size: 1.6em;
   padding: 50px;
 }
 
-.contact-link a {
+.contact-links a {
     text-decoration: none;
+}
+
+.contact-links a:link {
+  color: black;
+}
+
+.contact-links a:visited {
+  color: black;
+}
+
+.contact-links a:hover {
+  color: rgb(36, 36, 255);
+}
+
+.contact-links a:active {
+  color: rgb(36, 36, 255);
 }
 
 /* ==============
@@ -206,7 +260,7 @@ h2 a:hover {
     font-size: 15px;
   }
   
-  .contact-link {
+  .contact-links {
     flex-direction: column;
     padding: 10px;
   }
