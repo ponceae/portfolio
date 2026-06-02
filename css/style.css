@@ -1,237 +1,218 @@
-/*
- * Author: Adrien P.
- */
+/* ============
+    -- MAIN --
+   ============ */
 
-/* *, *::before, *::after {
-    box-sizing: border-box;
-} */
-
- html {
-    scroll-behavior: smooth;
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+h1, 
+p {
+  text-align: center;
 }
 
-nav {
-    background: white;
-    border-bottom: 2px transparent;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-h1, p {
-    text-align: center;
-}
-
-footer {
-    align-items: center;
-    background: white;
-    bottom: 0;    
-    display: flex;
-    flex-direction: row;
-    font-style: italic;
-    font-weight: light;
-    justify-content: center;
-    padding: 10px 20px;
-    position: sticky;
-    text-align: center;    
-}
-
-.nav-links {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    justify-content: center;
-    list-style: none;
-    margin: 0;    
-    padding: 0;
-}
+/* ==============
+    -- LAYOUT --
+   ============== */
 
 .scroll-container {
-    flex: 1;
-    margin: 0;
-    padding-top: 0;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+  flex: 1;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 .section {
-    scroll-snap-align: start;  
-    height: 100%;       
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 20px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;  
+  box-sizing: border-box;
+  scroll-snap-align: start;  
 }
 
-.hero {
-    background: linear-gradient(to bottom, #f0f0f0, white);
-    color: black;
-    text-align: center;
+/* ====================
+    -- NAV / FOOTER --
+   ==================== */
+
+nav,
+footer {
+  background: #FFFF;
+  padding: 10px 20px;
+  text-align: center;
 }
 
-.about {
-    line-height: 1.6;
-    max-width: 900px;    
-    margin: 0 auto;
-    text-align: center;
-    width: 60%;
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px transparent;
 }
 
-.contact {
-    background: linear-gradient(to bottom, white, #f0f0f0);
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;    
+  position: sticky;  
+  font-style: italic;
 }
 
-.contact-link {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    padding: 50px;
-    margin: 0;
-    justify-content: center;
-}
+/* ==================
+    -- NAVIGATION --
+   ================== */
 
-.skills-desc {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 30px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    justify-content: center;
-}
-
-.skills-list {
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.skills-imgs {
-    height: 90px;
-    width: auto;
-}
-
-.contact-link-cont {
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+  margin: 0;    
+  padding: 0;
 }
 
 .nav-links a {
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.hero p {
-    font-size: 17.5px;
+.nav-links a:hover,
+h2 a:hover {
+  color: rgb(36, 36, 255);
+  cursor: pointer;
+}
+
+/* ================
+    -- SECTIONS --
+   ================ */
+
+.hero {
+  background: linear-gradient(to bottom, #f0f0f0, white);
+  color: black;
+  text-align: center;
+}
+
+.hero p,
+.projects-desc {
+  font-size: 17.5px;
+}
+
+.about {
+  width: 60%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.6;    
 }
 
 .about p {
-    font-size: 20px;
-    overflow-wrap: normal;
-    word-wrap: normal;    
+  font-size: 20px;
 }
 
+.contact {
+  background: linear-gradient(to bottom, white, #f0f0f0);
+}
+
+/* ================
+    -- PROJECTS --
+   ================ */
+
 .projects-desc {
-    list-style: none;
-    text-align: center;
-    padding-left: 0;
-    margin: 0;
-    font-size: 17.5px;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  text-align: center;
 }
 
 .projects-desc li {
-    padding-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+/* ================
+    --- SKILLS ---
+   ================ */
+
+.skills-list,
+.contact-link-cont {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+  
+.skills-desc,
+.contact-link {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills-desc {
+  flex-wrap: wrap;
 }
 
 .skills-desc li {
-    width: calc(25% - 30px);
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  width: calc(25% - 30px);
 }
 
-.nav-links a:hover {
-    color: rgb(36, 36, 255);
+.skills-imgs {
+  height: 90px;
+  width: auto;
 }
 
-h2 a:hover {
-    color: rgb(36, 36, 255);
+/* ===============
+    -- CONTACT --
+   =============== */
+
+.contact-link {
+  padding: 50px;
 }
 
 .contact-link a {
     text-decoration: none;
 }
 
+/* ==============
+    -- MOBILE --
+   ============== */
+
 @media screen and (max-width: 500px) {
-    .section {
-        scroll-snap-align: start;  
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 0 20px;
-        box-sizing: border-box;
-    }
+  .about {
+    width: 100%;
+    line-height: 1.3;
+  }
+  
+  .about p {
+    font-size: 15px;
+  }
+  
+  .contact-link {
+    flex-direction: column;
+    padding: 10px;
+  }
 
-    .about {
-        line-height: 1.3;
-        max-width: 900px;    
-        margin: 0 auto;
-        text-align: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .contact-link {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        padding: 10px;
-        margin: 0;
-        justify-content: center;
-}
-
-    .about p {
-        font-size: 15px;
-    }
-
-    .skills-desc {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 30px;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        justify-content: center;
-}
-
-    .skills-list {
-        max-width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .skills-imgs {
-        height: 40px;
-        width: auto;
-    }
+  .skills-imgs {
+    height: 40px;
+    width: auto;
+  }
 }
