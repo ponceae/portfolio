@@ -204,6 +204,7 @@ h2 a:hover {
 
 .skills-desc {
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .skills-desc li {
