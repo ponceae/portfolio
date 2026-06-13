@@ -71,10 +71,14 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
-  height: 100vh;  
+  padding: 60px 20px;  
+}
+
+.snap-section {
+  height: 100vh;
   scroll-snap-align: start;  
   scroll-snap-stop: always;
+  padding: 0 20px;
 }
 
 /* ====================
@@ -191,6 +195,7 @@ h2 a:hover {
 
 .quick-links a {
   color: black;
+  padding: 10px;
 }
 
 .quick-links a:hover {
