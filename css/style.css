@@ -346,4 +346,8 @@ h2 a:hover {
     scroll-snap-type: none;
   }
 
+  .projects-desc {
+    width: 100%;
+    padding: 0 10px;
+  }
 }
