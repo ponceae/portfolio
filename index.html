@@ -31,32 +31,32 @@
       <section id="about" class="section snap-section about">
         <h2>About Me</h2>
         <p>
-          I am a computer science graduate looking to utilize the skills I have learned in my 
-          academic experience. I excel in the development of Python, Java, and C, while also 
-          being proficient in SQL querying. I am seeking entry-level full-time jobs within the 
-          domain of software development and information technology. I am driven to continuously 
-          and tenaciously expand my skill set, while also exploring emerging technologies in order 
-          to deliver innovative solutions to emerging problems. I consistently meet deadlines with 
-          precision and am eager to contribute my aptitudes.
+          Computer science graduate with hands-on experience building full stack software using
+          Python, FastAPI, React, SQL, and SQLModel. My projects span REST APIs, relational 
+          databases, statistical modeling, server rendered web applications, and browser based
+          games.
+        </p>
+        <p>
+          I'm particularly interested in backend and full stack development, with a focus on
+          building well structured applications and understanding how different layers of a 
+          system work together. I continue to strenghten my skills through projects involving
+          API design, data modeling, testing, application architecture, and frontend-backend 
+          integration.
         </p>
       </section> <!-- End of about section. -->
             
       <section id="projects" class="section snap-section projects">
         <h2>Projects</h2>
         <h3>CLI Blackjack</h3>
+        <p><i>Python</i></p>
         <ul class="projects-desc">
           <li>
-            Built a single deck Blackjack game in Python with full 
-            gameplay mechanics including splitting, doubling down, insurance,
-            and accurate payout handling
+            Built a Python CLI Blackjack game with modular game logic for splitting, insurance,
+            wagering, payouts, and multi-hand turn control.
           </li>
           <li>
-            Used dataclasses and modular design to separate game logic from
-            the CLI interface
-          </li>
-          <li>
-            Implemented JSON based persistence to maintain player state 
-            across sessions
+            Added JSON based player persistence and automated pytest coverage for core rules,
+            storage, payouts, and terminal interaction.
           </li>
         </ul>
         <div class="quick-links">
@@ -67,23 +67,15 @@
         <section id="projects" class="section snap-section projects continued">
           <h2>Projects (Cont.)</h2>
           <h3>Blackjack App</h3>
+          <p><i>Python • Flask • HTML/CSS</i></p>
           <ul class="projects-desc">
             <li>
-              Built a web based Blackjack application using a Python and Flask backend with full
-              gameplay mechanics including splitting, doubling down, insurance, and accurate 
-              payout handling
+              Built a Python/Flask Blackjack web application supporting splitting, doubling down,
+              insurance, wager management, payouts, and a configurable sandbox bankroll.
             </li>
             <li>
-              Used Flask routing and modular design to separate the core backend game logic from the
-              presentation layer. 
-            </li>
-            <li>
-              Implemented Jinja templating to dynamically inject real time game data and immediate 
-              hand state directly into the HTML frontend
-            </li>
-            <li>
-              Designed the application as a sandbox, managing complex in game state transitions and 
-              wager logic without relying on database persistence
+              Structured game logic around behavior rich domain entities and a separate engine
+              layer, using Flask sesions to serialize and restore game state across HTTP requests.
             </li>
           </ul>
           <div class="quick-links">
@@ -95,22 +87,16 @@
         <section id="projects" class="section snap-section projects continued">
           <h2>Projects (Cont.)</h2>
           <h3>Asteroids App</h3>
+          <p><i>JavaScript • HTML/CSS</i></p>
           <ul class="projects-desc">
             <li>
-              Built a web based Asteroids arcade game using JavaScript and the HTML Canvas API,
-              featuring a vector based physics system with accurate collision detection
+              Built a browser based Asteroids game with vanilla JavaScript and the HTML Canvas API,
+              implementing a real time game loop, vector based movement, collision detection, and
+              wave progression.
             </li>
             <li>
-              Used ES6 modules and class based entity management to separate the core game logic
-              from the rendering loop
-            </li>
-            <li>
-              Implemented an optimized game loop with garbage collection to maintain stable frame 
-              rates and manage entity states during infinitely scaling waves of asteroids
-            </li>
-            <li>
-              Designed a custom 2D vector math library from scratch to handle entity velocity,
-              trigonometric rotations, and precise movement mechanics
+              Developed a reusable Vector2 math library and ES6 entity system for thrust, rotation,
+              screen wrapping, projectile motion, and procedural asteroid rendering.
             </li>
           </ul>
           <div class="quick-links">
@@ -118,34 +104,61 @@
             <a href="https://github.com/ponceae/asteroids-app" target="_blank" rel="noopener noreferrer">View Source Code</a>
           </div>
         </section> <!-- End of Asteroids App section. -->
+        <section id="projects" class="section snap-section projects continued">
+          <h2>Projects (Cont.)</h2>
+          <h3>Soccer Prediction App</h3>
+          <p><i>Python • FastAPI • React • SQLModel • SQLite</i></p>
+          <ul class="projects-desc">
+            <li>
+              Developing a full stack soccer analytics and prediction application with React,
+              FastAPI, SQLModel, SQLite.
+            </li>
+            <li>
+              Designed a modular FastAPI backend with RESTful endpoints, validated response
+              schemas, relational data models, and a dedicated analytics layer.
+            </li>
+            <li>
+              Implemented a Poisson based prediction model using league scoring averages and
+              normalized team attack/defense strengths to calculate expected goals and matchup
+              probabilities.
+            </li>
+            <li>
+              Built a React frontend with reusable componenets and route driven views for league
+              standings, team profiles, historical matchups, and prediction results.
+            </li>
+          </ul>
+          <div class="quick-links">
+            <a href="https://ponceae.github.io/soccer-prediction-app/" target="_blank" rel="noopener noreferrer">View Source Code</a>
+          </div>
+        </section> <!-- End of Soccer App section. -->
             
       <section id="skills" class="section snap-section skills">
         <h2>Skills</h2>
+        <h3>Languages</h3>
         <div class="skills-list">
           <ul class="skills-desc">
-            <li><img class="skills-imgs" src="images/lang_imgs/py_sym.png" alt="Python"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/java_sym.png" alt="Java"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/c_sym.png" alt="C"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/ruby_sym.png" alt="Ruby"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/js_sym.png" alt="JavaScript"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/sql_sym.png" alt="SQL"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/flask_sym.png" alt="Flask"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/jinja_sym.png" alt="Jinja"></li>            
-            <li><img class="skills-imgs" src="images/lang_imgs/git_sym.png" alt="Git"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/wp_sym.png" alt="Windows Powershell"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/bash_sym.png" alt="Linux Bash"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/ms365_sym.png" alt="Microsoft 365"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/html_sym.png" alt="HTML"></li>
-            <li><img class="skills-imgs" src="images/lang_imgs/css_sym.png" alt="CSS"></li>
+            <li>Python • JavaScript • SQL • HTML/CSS</li>
           </ul>
-        </div> <!-- End of skills-list div -->
+        </div>
+        <h3>Frameworks & Libraries</h3>
+        <div class="skills-list">
+          <ul class="skills-desc">
+            <li>FastAPI • React • SQLModel • Flask</li>
+          </ul>
+        </div>
+        <h3>Databases & Tools</h3>
+        <div class="skills-list">
+          <ul class="skills-desc">
+            <li>SQLite • Git • GitHub • pytest • Vitest</li>
+          </ul>        
+        </div> 
       </section> <!-- End of skills section -->
 
       <section id="contact" class="section snap-section contact">
           <h2>Contact</h2>
           <div class="contact-link-cont">
             <ul class="contact-links">
-              <li><a href="src/resume_adrien_ponce_2.pdf" target="_blank" rel="noopener">Resume</a></li>
+              <li><a href="src/resume_adrien_ponce.pdf" target="_blank" rel="noopener">Resume</a></li>
               <li><a href="https://github.com/ponceae" target="_blank" rel="noopener">GitHub</a></li>
               <li><a href="https://linkedin.com/in/adrienponce"target="_blank" rel="noopener">LinkedIn</a></li>
             </ul>
