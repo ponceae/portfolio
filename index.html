@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/projects.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/index.css">
   </head>
   <body>   
     <nav> 
@@ -22,12 +22,12 @@
 
     <section class="scroll-container">
             
-      <header class="section snap-section hero">
+      <header class="section snap-section centered-section hero">
         <h1>Hello, I'm Adrien</h1>
         <p>Welcome to My Portfolio</p>
       </header>
             
-      <section id="about" class="section snap-section about">
+      <section id="about" class="section snap-section centered-section about">
         <h2>About Me</h2>
         <p>
           Computer science graduate with hands-on experience building full stack software using
@@ -38,13 +38,13 @@
         <p>
           I'm particularly interested in backend and full stack development, with a focus on
           building well structured applications and understanding how different layers of a 
-          system work together. I continue to strenghten my skills through projects involving
+          system work together. I continue to strengthen my skills through projects involving
           API design, data modeling, testing, application architecture, and frontend-backend 
           integration.
         </p>
       </section> 
             
-      <section id="projects" class="section snap-section projects">
+      <section id="projects" class="section snap-section centered-section projects">
         <h2>Projects</h2>
         <h3>CLI Blackjack</h3>
         <p><i>Python • pytest • JSON</i></p>
@@ -62,7 +62,8 @@
             <a href="cli-blackjack.html">More Details</a>
           </div>
         </section> 
-        <section id="projects" class="section snap-section projects continued">
+
+        <section class="section snap-section centered-section projects">
           <h2>Projects (Cont.)</h2>
           <h3>Blackjack App</h3>
           <p><i>Python • Flask • HTML/CSS</i></p>
@@ -73,16 +74,23 @@
             </li>
             <li>
               Structured game logic around behavior rich domain entities and a separate engine
-              layer, using Flask sesions to serialize and restore game state across HTTP requests.
+              layer, using Flask sessions to serialize and restore game state across HTTP requests.
             </li>
           </ul>
           <div class="quick-links">
-            <a href="https://blackjack-app-7wfr.onrender.com/" target="_blank" rel="noopener noreferrer">▶ Play Live Demo</a>
+            <a 
+              href="https://blackjack-app-7wfr.onrender.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              ▶ Play Live Demo
+            </a>
             <p>⚠ May take a minute to wake up the server ⚠</p>
             <a href="https://github.com/ponceae/blackjack-app" target="_blank" rel="noopener noreferrer">View Source Code</a>
           </div>
         </section> 
-        <section id="projects" class="section snap-section projects continued">
+
+        <section class="section snap-section centered-section projects">
           <h2>Projects (Cont.)</h2>
           <h3>Asteroids App</h3>
           <p><i>JavaScript • HTML/CSS</i></p>
@@ -98,11 +106,24 @@
             </li>
           </ul>
           <div class="quick-links">
-            <a href="https://ponceae.github.io/asteroids-app/" target="_blank" rel="noopener noreferrer">▶ Play Live Demo</a>
-            <a href="https://github.com/ponceae/asteroids-app" target="_blank" rel="noopener noreferrer">View Source Code</a>
+            <a 
+              href="https://ponceae.github.io/asteroids-app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              ▶ Play Live Demo
+            </a>
+            <a 
+              href="https://github.com/ponceae/asteroids-app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              View Source Code
+            </a>
           </div>
         </section> 
-        <section id="projects" class="section snap-section projects continued">
+
+        <section class="section snap-section centered-section projects">
           <h2>Projects (Cont.)</h2>
           <h3>Soccer Prediction App</h3>
           <p><i>Python • FastAPI • React • SQLModel • SQLite</i></p>
@@ -121,50 +142,64 @@
               probabilities.
             </li>
             <li>
-              Built a React frontend with reusable componenets and route driven views for league
+              Built a React frontend with reusable components and route driven views for league
               standings, team profiles, historical matchups, and prediction results.
             </li>
           </ul>
           <div class="quick-links">
-            <a href="https://ponceae.github.io/soccer-prediction-app/" target="_blank" rel="noopener noreferrer">View Source Code</a>
+            <a 
+              href="https://ponceae.github.io/soccer-prediction-app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              View Source Code
+            </a>
           </div>
         </section>
             
-      <section id="skills" class="section snap-section skills">
+      <section id="skills" class="section snap-section centered-section skills">
         <h2>Skills</h2>
         <h3>Languages</h3>
-        <div class="skills-list">
-          <ul class="skills-desc">
-            <li>Python • JavaScript • SQL • HTML/CSS</li>
-          </ul>
-        </div>
+        <ul class="skills-desc">
+          <li>Python • JavaScript • SQL • HTML/CSS</li>
+        </ul>
         <h3>Frameworks & Libraries</h3>
-        <div class="skills-list">
-          <ul class="skills-desc">
-            <li>FastAPI • React • SQLModel • Flask</li>
-          </ul>
-        </div>
+        <ul class="skills-desc">
+          <li>FastAPI • React • SQLModel • Flask</li>
+        </ul>
         <h3>Databases & Tools</h3>
-        <div class="skills-list">
-          <ul class="skills-desc">
-            <li>SQLite • Git • GitHub • pytest • Vitest</li>
-          </ul>        
-        </div> 
+        <ul class="skills-desc">
+          <li>SQLite • Git • GitHub • pytest • Vitest</li>
+        </ul>        
       </section> 
 
-      <section id="contact" class="section snap-section contact">
-          <h2>Contact</h2>
-          <div class="contact-link-cont">
-            <ul class="contact-links">
-              <li><a href="src/resume_adrien_ponce.pdf" target="_blank" rel="noopener">Resume</a></li>
-              <li><a href="https://github.com/ponceae" target="_blank" rel="noopener">GitHub</a></li>
-              <li><a href="https://linkedin.com/in/adrienponce"target="_blank" rel="noopener">LinkedIn</a></li>
-            </ul>
-          </div> 
-        </section> 
-        
+      <section id="contact" class="section snap-section centered-section contact">
+        <h2>Contact</h2>
+        <ul class="contact-links">
+          <li><a 
+            href="src/resume_adrien_ponce.pdf" 
+            target="_blank" 
+            rel="noopener"
+          >
+            Resume
+          </a></li>
+          <li><a 
+            href="https://github.com/ponceae" 
+            target="_blank" 
+            rel="noopener"
+          >
+            GitHub
+          </a></li>
+          <li><a 
+            href="https://linkedin.com/in/adrienponce" 
+            target="_blank" 
+            rel="noopener"
+          >
+            LinkedIn
+          </a></li>
+        </ul>
+        <footer>Property of Adrien Ponce</footer>  
       </section> 
-
-    <footer>Property of Adrien Ponce</footer>    
+    </section>   
   </body>
 </html>

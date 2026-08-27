@@ -8,27 +8,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/projects.css">
   </head>
   <body>
     <nav> 
       <ul class="nav-links">
-        <li><a href="#about">← Portfolio</a></li>
+        <li><a href="index.html">← Return to Portfolio</a></li>
         <li><a href="#projects">GitHub</a></li>
         <li><a href="#contact">Live Demo</a></li>
         <li><a href="#contact">Next Project →</a></li>
       </ul>
     </nav>
 
-    <section class="section overview">
+    <header class="section header">
       <h2>CLI Blackjack</h2>
       <p><i>Python • pytest • JSON</i></p>
       <div class="quick-links">
         <a href="https://github.com/ponceae/blackjack" target="_blank" rel="noopener noreferrer">View GitHub Repo</a>
       </div>
+      <video autoplay muted loop playsinline>
+        <source src="src/media/cli_blackjack_short_demo.mp4">
+      </video>
+    </header>
+
+    <section class="section overview">
       <h3>Overview</h3>
-      <p>INCLUDE A SCREENSHOT HERE</p>
       <p>
         A command line Blackjack game built in Python with persistent player profiles, wagering,
         splitting, insurance, and modular game logic. The project separates game orchestration, 
