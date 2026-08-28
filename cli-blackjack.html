@@ -18,7 +18,7 @@
           <a href="index.html">← Return to Portfolio</a>
         </li>
         <li>
-          <a href="">Next Project →</a>
+          <a href="blackjack-app.html">Next Project →</a>
         </li>
       </ul>
     </nav>
@@ -54,67 +54,70 @@
       <div class="feature-group">
         <h2>Architecture</h2>
         <p>
-          The game is organized as a Python package with gameplay logic separated into modules for 
-          game state, player actions, conditions, and payouts. Dataclasses are used to represent 
-          core entities such as player and dealer hands, while the main game loop coordinates each
-          phase of the round.
+          The game is organized as a Python package that separates round orchestration, game state, 
+          rule evaluation, terminal interaction, payouts, and persistence into dedicated modules. 
+          <code>game.py</code> coordinates the round lifecycle while structured objects carry 
+          state between each part of the application.
         </p>
+        <h3>High Level File Structure</h3>
+        <pre class="pre-format">
+          blackjack/
+          ├── src/
+          │   └── blackjack/
+          │       ├── game.py
+          │       ├── datatypes.py
+          │       ├── actions.py
+          │       ├── conditions.py
+          │       ├── payout_calculator.py
+          │       ├── interface.py
+          │       ├── storage.py
+          │       └── ...
+          ├── tests/
+          │   ├── conftest.py
+          │   ├── test_actions.py
+          │   └── ...
+          └─── pyproject.toml
+        </pre>
         <div class="feature-item">
-          <h4>Game Loop</h4>
+          <h4>Round Orchestration</h4>
           <p>
-            Controls round progression and determines when control passes between the player and 
-            dealer.
+            <code>game.py</code> coordinates the initial deal, player turns, dealer turns, and 
+            round resolution.
           </p>
         </div>
         
         <div class="feature-item">
           <h4>Game State / Models</h4>
           <p>
-            Stores hands, wagers, bank values, insurance, and round state.
+            <code>datatypes.py</code> defines the player, dealer, hands, table, insurance, 
+            outcomes, and split hand state used throughout the game.
           </p>
         </div>
 
         <div class="feature-item">
-          <h4>Conditions & Actions</h4>
+          <h4>Actions & Conditions</h4>
           <p>
-            Validates whether actions such as hit, stand, split, or double down are allowed and 
-            applies to them.
+            <code>actions.py</code> modifies game state, while <code>conditions.py</code>
+            evaluates rules and determines when actions or round transitions are valid.
           </p>
         </div>
 
         <div class="feature-item">
-          <h4>Payout Logic</h4>
+          <h4>Payout System</h4>
           <p>
-            Resolves blackjack, wins, losses, pushes, insurance, and doubled wagers.
+            <code>payout_calculator.py</code> calculates wager returns for blackjack, wins, 
+            pushes, insurance, and other outcomes.
           </p>
         </div>
           
         <div class="feature-item">
-          <h4>Testing</h4>
+          <h4>Interface & Persistence</h4>
           <p>
-            Tests the individual modules and full gameplay paths independently.
+            <code>interface.py</code> handles terminal input and output, while 
+            <code>storage.py</code> loads and saves player profiles and chip balances through JSON.
           </p>
         </div>
       </div>
-      <h3>High Level File Structure</h3>
-      <pre class="pre-format">
-        blackjack/
-        ├── src/
-        │   └── blackjack/
-        │       ├── game.py
-        │       ├── datatypes.py
-        │       ├── actions.py
-        │       ├── conditions.py
-        │       ├── payout_calculator.py
-        │       └── ...
-        │
-        ├── tests/
-        │   ├── conftest.py
-        │   ├── test_actions.py
-        │   └── ...
-        │
-        └─── pyproject.toml
-      </pre>
       <img 
         class="code-snippet"
         src="src/media/datatypes_snippet.svg"
@@ -339,7 +342,7 @@
       />
     </section>
 
-    <section class="section centered-section project-list conclusion">
+    <section class="section centered-section conclusion">
       <div class="challenges">
         <h3>Challenges / What I Learned</h3>
         <h4>Testing Interactive CLI Behavior</h4>

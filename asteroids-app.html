@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <title>Adrien Ponce Portfolio</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/projects.css">
+  </head>
+  <body id="top">
+    <nav> 
+      <ul class="nav-links">
+        <li>
+          <a href="index.html">← Return to Portfolio</a>
+        </li>
+        <li>
+          <a href="">Next Project →</a>
+        </li>
+      </ul>
+    </nav>
+
+    <header class="section centered-section header">
+      <h1>Asteroids App</h1>
+      <p><i>JavaScript • HTML5 Canvas • HTML/CSS</i></p>
+      <span class="quick-links">
+        <a 
+          href="https://github.com/ponceae/asteroids-app" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          View GitHub Repo
+        </a>
+      </span>
+      <!-- <video autoplay muted loop playsinline>
+        <source src="src/media/cli_blackjack_short_demo.mp4">
+      </video> -->
+    </header>
+
+    <section class="section centered-section overview">
+      <h2>Overview</h2>
+      <p>
+        A browser based Asteroids game built with vanilla JavaScript and the HTML Canvas API, 
+        featuring real time movement, shooting, collision detection, and wave based progression.
+        The project uses reusable entity classes and vector based math to manage movement,
+        rotation, projectiles, asteroids, and visual effects.
+      </p>
+    </section>
+
+    <section class="section centered-section architecture">
+      <div class="feature-group">
+        <h2>Architecture</h2>
+        <p>
+          The game is organized into separate modules for the main game loop, input handling, 
+          game entities, and reusable math utilities. Entity classes manage their own movement
+          and behavior, while the core loop coordinates updates, rendering, collisions, and 
+          wave progression.
+        </p>
+
+        <h3>High Level File Structure</h3>
+      <pre class="pre-format">
+        asteroids-app/
+        ├─── core/
+        │    ├─── constants.js 
+        │    ├─── input-listener.js 
+        │    └─── main.js
+        ├─── entities/ 
+        │    ├─── Asteroid.js 
+        │    ├─── Debris.js 
+        │    ├─── Particle.js 
+        │    └─── Spaceship.js 
+        ├─── utils/
+        │    ├─── Vector2.js 
+        │    ├─── Vector2.test.js 
+        │    └─── math-utils.js
+        ├─── index.html 
+        ├─── style.css 
+        └─── package.json
+      </pre>
+        <div class="feature-item">
+          <h4>Core Game Loop</h4>
+          <p>
+            <code>core/main.js</code> coordinates initialization, frame updates, rendering, 
+            collisions, spawning, and progression between waves. 
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Game Entities</h4>
+          <p>
+            <code>entities/</code> contains the spaceship, asteroids, particles, and debris, with 
+            each class responsible for its own state, movement, and drawing behavior.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Input System</h4>
+          <p>
+            <code>core/input-listener.js</code> tracks keyboard and touch controls independently 
+            from the game logic.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Math Utilities</h4>
+          <p>
+            <code>utils/Vector2.js</code> and <code>math-utils.js</code> provide reusable vector 
+            and geometry operations for movement, rotation, distance calculations, and collision 
+            logic. 
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section centered-section features">
+      <h2>Key Features / Game Systems</h2>
+      <p>
+        The game combines continuous player input, vector based movement, collision detection, and 
+        dynamically managed entities inside a real time Canvas game loop. Asteroids, projectiles,
+        debris, scoring, lives, and wave progression are updated independently on each 
+        animation frame.
+      </p>
+      <div class="feature-group">
+        <h3>Player Movement & Controls</h3>
+        <p>
+          The spaceship uses a velocity vector rather than directly changing its position, allowing 
+          thrust, momentum, friction, and rotation to combine into continuous movement.
+        </p>
+
+        <div class="feature-item">
+          <h4>Vector Based Movement</h4>
+          <p>
+            Thrust is calculated from the ship's current heading using sine and cosine, then added 
+            to its velocity before the position is updated.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Momentum & Friction</h4>
+          <p>
+            Velocity persists between frames and is gradually reduced by friction, allowing the 
+            ship to drift naturally after thrust is released.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Rotation</h4>
+          <p>
+            Left and right inputs adjusts the ship's heading, which is reused for movement, 
+            projectile direction, and rendering its rotated geometry.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Projectile System</h4>
+          <p>
+            Shots originate from the calculated nose of the ship and travel along its current 
+            heading, with a firing cooldown preventing an unlimited stream of projectiles.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Keyboard & Touch Input</h4>
+          <p>
+            A shared input state object maps both keyboard and mobile touch controls to the same 
+            gameplay actions, allowing the game logic to operate independently of the input method.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Screen Wrapping</h4>
+          <p>
+            The spaceship and asteroids reappear on the opposite side of the Canvas when they move
+            beyond its boundaries.
+          </p>
+        </div>
+      </div>
+      
+      <img 
+        class="code-snippet"
+        src="src/media/spaceship_snippet.svg"
+        alt="JavaScript Spaceship update() method"
+      />
+
+      <div class="feature-group">
+        <h3>Asteroids & Wave Progression</h3>
+        <p>
+          Asteroids are generated with randomized positions, velocities, and outlines so each wave 
+          produces different movement patterns and shapes.
+        </p>
+
+        <div class="feature-item">
+          <h4>Procedural Asteroids</h4>
+          <p>
+            Each asteroid generates an irregular eight vertex outline using randomized normalized 
+            distances from its center.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Randomized Spawning</h4>
+          <p>
+            Large asteroids begin outside a randomly selected Canvas edge and receive a velocity 
+            generated from a random direction and size dependent speed range.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Asteroid Splitting</h4>
+          <p>
+            Destroying a large asteroid creates two medium asteroids, while medium asteroids divide
+            into two small asteroids before being removed completely.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Size Based Behavior</h4>
+          <p>
+            Large, medium, and small asteroids use different radii, movement speeds, and score 
+            values, with smaller targets moving faster and awarding more points.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Wave Scaling</h4>
+          <p>
+            The game increases the starting asteroid count as waves progress, eventually capping 
+            the number of newly spawned large asteroids to a predetermined configurable value.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Collision, Scoring, & Effects</h3>
+        <p>
+          Collision checks connect the independent game entities and determine when projectiles, 
+          asteroids, and the player affect the current game state.
+        </p>
+
+        <div class="feature-item">
+          <h4>Collision Detection</h4>
+          <p>
+            Circular collision bounds compare the squared distance between entity positions against 
+            their combined radii, avoiding an unnecessary square root calculation on every check.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Scoring</h4>
+          <p>
+            Destroying an asteroid awards points according to its size before any child asteroids 
+            are spawned.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Player Lives</h4>
+          <p>
+            A collision between the ship and an asteroid removes a life and returns the ship to the 
+            center of the Canvas.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Explosion Debris</h4>
+          <p>
+            Destroyed asteroids and ships generate short lived debris particles with randomized 
+            velocities to provide a visual explosion effect.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Entity Cleanup</h4>
+          <p>
+            Destroyed asteroids and projectiles, expired debris, and off screen projectiles are
+            filtered from their collections as the game runs.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Game States</h4>
+          <p>
+            Menu, active gameplay, and game over states control what is updated and rendered, with 
+            restart logic resetting lives, score, wave progression, entities, and the player's 
+            ship.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section centered-section testing">
+      <div class="feature-group">
+        <h3>Testing</h3>
+        <p>
+          The project uses Vitest to verify the reusable <code>Vector2</code> math utility that
+          supports movement, positioning, and collision calculations throughout the game. Tests
+          cover both mutating instance methods and static operations across positive, negative,
+          floating point, and zero value inputs.
+        </p>
+
+        <div class="feature-item">
+          <h4>Vector Arithmetic</h4>
+          <p>
+            Tests vector addition, subtraction, and scalar multiplication using a range of
+            coordinate values.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Magnitude & Distance</h4>
+          <p>
+            Validates magnitude, squared magnitude, distance, and squared distance calculations 
+            used by movement and collision systems.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Normalization & Rotation</h4>
+          <p>
+            Verifies normalized vectors and rotational transformations across positive and negative 
+            angles, including zero magnitude handling.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Instance & Static Methods</h4>
+          <p>
+            Tests both operations that modify an existing vector and equivalent static methods that 
+            return a new <code>Vector2</code> instance.
+          </p>
+        </div>
+      </div>
+      <img 
+        class="code-snippet"
+        src="src/media/vector2_test_snippet.svg"
+        alt="JavaScript Vitest test rotation snippet"
+      />
+    </section>
+
+    <section class="section centered-section conclusion">
+      <div class="challenges">
+        <h3>Challenges / What I Learned</h3>
+        <h4></h4>
+        <p>
+
+        </p>
+        <h4></h4>
+        <p>
+
+        </p>
+        <h4></h4>
+        <p>
+          
+        </p>
+      </div>
+    </section>
+  </body>
+  </html>

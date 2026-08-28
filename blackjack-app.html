@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <title>Adrien Ponce Portfolio</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/projects.css">
+  </head>
+  <body id="top">
+    <nav> 
+      <ul class="nav-links">
+        <li>
+          <a href="index.html">← Return to Portfolio</a>
+        </li>
+        <li>
+          <a href="">Next Project →</a>
+        </li>
+      </ul>
+    </nav>
+
+    <header class="section centered-section header">
+      <h1>Blackjack Web App</h1>
+      <p><i>Python • Flask • Jinja • HTML/CSS</i></p>
+      <span class="quick-links">
+        <a 
+          href="https://github.com/ponceae/blackjack-app" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          View GitHub Repo
+        </a>
+      </span>
+      <!-- <video autoplay muted loop playsinline>
+        <source src="src/media/cli_blackjack_short_demo.mp4">
+      </video> -->
+    </header>
+
+    <section class="section centered-section overview">
+      <h2>Overview</h2>
+      <p>
+        A browser based Blackjack game built with Python and Flask, adapted from my earlier
+        command line implementation. The application supports wagering, splitting, doubling down,
+        insurance, and payouts while maintaining game state across requests with Flask sessions.
+      </p>
+    </section>
+
+    <section class="section centered-section architecture">
+      <div class="feature-group">
+        <h2>Architecture</h2>
+        <p>
+          The application separates the Flask web layer from the underlying Blackjack logic, with 
+          dedicated modules for game actions, rule validation, payouts, and domain state. Flask 
+          sessions are used to serialize and restore the current game between requests, while 
+          Jinja templates render that state in the browser.
+        </p>
+        <h3>High Level File Structure</h3>
+      <pre class="pre-format">
+        blackjack-app/
+        ├── app.py
+        ├── engine/
+        │   ├── actions.py
+        │   ├── conditions.py 
+        │   └── payouts.py 
+        ├── entities/
+        │   ├── bank.py 
+        │   ├── card.py 
+        │   ├── deck.py 
+        │   ├── hand.py 
+        │   ├── models.py 
+        │   ├── player.py 
+        │   └── table.py
+        ├── utils/
+        │   ├── session_utils.py 
+        │   └── validation.py
+        ├── templates/
+        │   ├── index.html 
+        │   └── macros.html
+        ├── static/
+        │   ├── cards/ 
+        │   │   └── ...
+        │   ├── css/ 
+        │   │   └── ...
+        │   └── images/
+        │       └── ...
+        ├─── tests/
+        │    ├── test_actions.py 
+        │    ├── test_conditions.py 
+        │    ├── test_payouts.py 
+        │    └── ...
+        └─── requirements.txt
+      </pre>
+        <div class="feature-item">
+          <h4>Flask Web Layer</h4>
+          <p>
+            <code>app.py</code> handles incoming requests and coordinates game actions without 
+            containing the core Blackjack rules itself.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Game Engine</h4>
+          <p>
+            <code>engine/</code> contains the action, condition, and payout logic used to 
+            determine what the player can do and how each round is resolved. 
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Domain Entities</h4>
+          <p>
+            <code>entities/</code> models the core game state, including the table, player, hands 
+            deck, cards, and bankroll.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Session Management</h4>
+          <p>
+            <code>utils/session_utils.py</code> converts the active game state into session safe 
+            data and reconstructs the corresponding Python objects on later requests.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Presentation Layer</h4>
+          <p>
+            Jinja templates render the current game state, while the static assets provide the card 
+            imagery and styling.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section centered-section features">
+      <h2>Key Features / Gameplay Logic</h2>
+        <p>
+          The web application preserves the Blackjack rules from the original CLI project while 
+          adapting them to a browser based workflow. Player actions, wagers, hand progression, and
+          outcomes are coordinated through Flask routes and reflected dynamically in the rendered 
+          interface.
+        </p>
+
+      <div class="feature-group">
+        <h3>Browser Gameplay & Controls</h3>
+        <p>
+          Gameplay is controlled through server rendered forms, with each player action sent to a 
+          dedicated Flask route. Jinja templates use the current game state to determine which 
+          controls, cards, wagers, and outcomes should be displayed.
+        </p>
+
+        <div class="feature-item">
+          <h4>Wager Controls</h4>
+          <p>
+            Chip buttons allow the player to build or reduce a wager before dealing, with the 
+            current wager reflected in the rendered interface.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Context Aware Actions</h4>
+          <p>
+            Hit, stand, double, split, and insurance controls are displayed only when they are 
+            relevant to the current stage of the round.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Dynamic Card Display</h4>
+          <p>
+            Player and dealer cards are rendered from the current hand state, including a hidden 
+            dealer hole card until the dealer's turn begins.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Round Feedback</h4>
+          <p>
+            Hand values, wagers, outcomes, insurance, results, and total winnings are updated as
+            the round progresses.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Multi Hand & Round Management</h3>
+        <p>
+          The application tracks the active player hand throughout the round and advances play 
+          between hands before beginning the dealer sequence. Split hands retain independent cards,
+          wagers, scores, and outcomes while sharing the same table and deck.
+        </p>
+
+        <div class="feature-item">
+          <h4>Split Hands</h4>
+          <p>
+            Qualifying hands can be repeatedly split into as many as four independently tracked 
+            player hands.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Independent Wagers</h4>
+          <p>
+            Each player hand stores its own wager, allowing split and doubled hands to be 
+            resolved independently.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Turn Progression</h4>
+          <p>
+            Standing or reaching 21 advances control to the next player hand, with the dealer turn
+            beginning after all player hands are complete.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Dealer Sequence</h4>
+          <p>
+            The dealer's hidden card is revealed and cards are drawn automatically until the 
+            dealer reaches the required standing value.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Outcomes, Insurance, & Payouts</h3>
+        <p>
+          At the end of a round, each player hand is evaluated independently against the dealer 
+          and assigned its own outcome. Standard wins, blackjack, pushes, doubled wagers, and 
+          insurance are resolved before the final results are rendered to the player.
+        </p>
+
+        <div class="feature-item">
+          <h4>Per Hand Outcomes</h4>
+          <p>
+            Split hands can finish with different results within the same round.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Blackjack & Standard Payouts</h4>
+          <p>
+            Natural blackjack uses a 3:2 payout while standard winning hands use a 1:1 payout.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Pushes</h4>
+          <p>
+            Tied hands return the original wager.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Insurance</h4>
+          <p>
+            When the dealer shows an Ace, the game enters a separate insurance phase and resolves 
+            the side wager independently from the player's hand.
+          </p>
+        </div>
+    </section>
+    
+    <section class="section centered-section session-man">
+      <div class="feature-group">
+        <h3>Session Management</h3>
+        <p>
+          Because each HTTP request is independent, the active Blackjack state must be preserved 
+          between player actions. Game objects are converted into session compatible dictionaries 
+          after each action and reconstructed into their Python representation when the next 
+          request begins.
+        </p>
+
+        <div class="feature-item">
+          <h4>State Serialization</h4>
+          <p>
+            Core entities implement <code>to_dict()</code> methods that convert nested game state 
+            including the table, player hands, deck, bankroll, and dealer, into data that can be 
+            stored in the Flask session.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>State Reconstruction</h4>
+          <p>
+            Corresponding <code>from_dict()</code> methods rebuild the object graph on each
+            request, allowing the game engine to continue operating on normal Python objects rather
+            than raw session data.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Session Utilities</h4>
+          <p>
+            <code>session_utils.py</code> centralizes loading and saving the table, insurance, and 
+            outcome state instead of handling serialization directly inside each Flask route.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Round State</h4>
+          <p>
+            Lightweight values such as the current wager, active game status, insurance phase, and
+            winnings are stored directly in the session alongside the serialized game objects.
+          </p>
+        </div>
+      </div>
+
+      <h3>Reconstruction & Serialization Data Flow</h3>
+      <pre class="pre-format">
+        Player Action 
+                  &darr;
+        Flask Route
+                  &darr;
+        Load Session State
+                  &darr;
+        Reconstruct Table Objects
+                  &darr;
+        Apply Game Logic
+                  &darr;
+        Serialize Updated State
+                  &darr;
+        Save to Flask Session
+                  &darr;
+        Redirect / Render
+      </pre>
+      <img 
+        class="code-snippet"
+        src="src/media/table_serialization_snippet.svg"
+        alt="Python object reconstructor and serializer"
+      />
+    </section>
+
+    <section class="section centered-section testing">
+      <div class="feature-group">
+        <h3>Testing</h3>
+        <p>
+          The project uses pytest to verify the Blackjack engine and domain objects independently
+          from the Flask interface. Tests cover gameplay actions and conditions, payouts, entity 
+          behavior, and the serialization methods used to preserve object state between requests.
+        </p>
+
+        <div class="feature-item">
+          <h4>Game Logic</h4>
+          <p>
+            Tests actions such as dealing, hitting, splitting, standing, and dealer progression
+            along with the conditions that determine valid wagers, insurance, and round outcomes.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Entity Behavior</h4>
+          <p>
+            Validates cards, hands, decks, players, bankrolls, and table state, including hand
+            values, Ace handling, balance changes, and object relationships.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Serialization</h4>
+          <p>
+            Tests <code>to_dict()</code> and <code>from_dict()</code> implementations across the
+            game entities to ensure state can be converted to session compatible data and 
+            reconstructed correctly.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Payouts</h4>
+          <p>
+            Uses parameterized tests to verify blackjack, standard wins, pushes, and insurance 
+            calculations across different wager values.
+          </p>
+        </div>
+      </div>
+      <img 
+        class="code-snippet"
+        src="src/media/table_test_snippet.svg"
+        alt="Python table serializer and reconstructor snippet"
+      />
+    </section>
+
+    <section class="section centered-section conclusion">
+      <div class="challenges">
+        <h3>Challenges / What I Learned</h3>
+        <h4>Adapting Game State to HTTP</h4>
+        <p>
+          The original CLI application could keep the active game objects in memory throughout the 
+          game loop, but a Flask application processes each player action as a separate request. I
+          had to redesign how stat was preserved by converting nested game objects into session 
+          compatible dictionaries and reconstructing them when the next request began. This helped 
+          me better understand the stateless nature of HTTP and the need for explicit serialization 
+          when application state must persist between requests.
+        </p>
+        <h4>Preserving Game Logic During the Web Refactor</h4>
+        <p>
+          Moving the project to Flask required changing hwo the game was controlled without
+          rewriting the Blackjack rules around the web framework. I refined the separation between 
+          entity behavior, engine level coordination, and Flask route handling so actions such as 
+          drawing cards, evaluating hands, and resolving outcomes remained independent of the 
+          interface. This reinforced the importance of keeping framework specific code separate 
+          from reusable domain logic.
+        </p>
+        <h4>Managing Multi Hand State Across Requests</h4>
+        <p>
+          Splitting introduced several independently changing pieces of state, including each 
+          hand's cards, wager, turn status, and final outcome. In the web version, that state also
+          needed to be serialized, reconstructed, and rendered correctly after every player action.
+          Keeping each split hand represented by the same <code>PlayerHand</code> structure 
+          allowed the engine, session system, and templates to work with multiple hands without 
+          creating separate logic for each one.
+        </p>
+      </div>
+    </section>
+    <span class="quick-links bt-top">
+      <a href="#top">↑ Back to Top</a>
+    </span>
+  </body>
+  </html>

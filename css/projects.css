@@ -29,7 +29,8 @@ h4 {
 .overview p,
 .features p,
 .testing p,
-.conclusion p {
+.conclusion p,
+.session-man p {
   white-space: pre-wrap;
 }
 
