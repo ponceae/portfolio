@@ -295,40 +295,42 @@
     </section>
     
     <section class="section centered-section testing">
-      <h3>Testing</h3>
-      <p>
-        The project uses pytest to verify both individual game components and complete gameplay
-        paths, including edge cases around splitting, insurance, dealer behavior, and round 
-        resolution.
-      </p>
-
-      <div class="feature-item">
-        <h4>Unit Tests</h4>
+      <div class="feature-group">
+        <h3>Testing</h3>
         <p>
-          Validate hand values, deck behaviors, wagers, payouts, and game state conditions.
-        </p>
-      </div>
-        
-      <div class="feature-item">
-        <h4>Input Simulation</h4>
-        <p>
-          Uses <code>monkeypatch</code> to simulate player input during CLI flows.
-        </p>
-      </div>
-
-      <div class="feature-item">
-        <h4>Output Verification</h4>
-        <p>
-          Uses <code>capsys</code> to confirm expected terminal output.
-        </p>
-      </div>
-     
-      <div class="feature-item">
-        <h4>Gameplay Scenarios</h4>
-        <p>
-          Tests full round paths such as blackjack, busts, insurance, splits, and dealer
+          The project uses pytest to verify both individual game components and complete gameplay
+          paths, including edge cases around splitting, insurance, dealer behavior, and round 
           resolution.
         </p>
+
+        <div class="feature-item">
+          <h4>Unit Tests</h4>
+          <p>
+            Validate hand values, deck behaviors, wagers, payouts, and game state conditions.
+          </p>
+        </div>
+          
+        <div class="feature-item">
+          <h4>Input Simulation</h4>
+          <p>
+            Uses <code>monkeypatch</code> to simulate player input during CLI flows.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Output Verification</h4>
+          <p>
+            Uses <code>capsys</code> to confirm expected terminal output.
+          </p>
+        </div>
+      
+        <div class="feature-item">
+          <h4>Gameplay Scenarios</h4>
+          <p>
+            Tests full round paths such as blackjack, busts, insurance, splits, and dealer
+            resolution.
+          </p>
+        </div>
       </div>
       <img
         class="code-snippet" 

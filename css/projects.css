@@ -1,3 +1,9 @@
+/* 
++==============+
+  -- GLOBAL -- 
++==============+ 
+*/
+
 html {
   scroll-behavior: smooth;
 }
@@ -13,9 +19,16 @@ h4 {
   margin: 0;
 }
 
+/* 
++================+
+  -- SECTIONS -- 
++================+ 
+*/
+
 .architecture p,
 .overview p,
 .features p,
+.testing p,
 .conclusion p {
   white-space: pre-wrap;
 }
@@ -46,46 +59,23 @@ h4 {
   width: auto;
 }
 
-.code_snippet {
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  margin-top: 1.5rem;
-}
+/* 
++================+
+  -- FEATURES -- 
++================+ 
+*/
 
 .feature-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
 }
 
 .feature-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
-}
-
-.quick-links {
-  padding-bottom: 15px;
-}
-
-.project-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.project-list li {
-  margin: 0 0 0.75rem;
-  font-size: 18px;
-}
-
-.bt-top a {
-  text-decoration: none;
-  font-size: 1.3rem;
+  margin: 5px;
 }
 
 .challenges {
@@ -95,10 +85,39 @@ h4 {
   gap: 1.5rem;
 }
 
+/* 
++=============+
+  -- MEDIA -- 
++=============+ 
+*/
+
+.code_snippet {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-top: 1.5rem;
+}
+
 .pre-format {
   display: flex;
   flex-direction: column;
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
+}
+
+/* 
++============+
+  -- NAVS -- 
++============+ 
+*/
+
+.quick-links {
+  padding-bottom: 15px;
+}
+
+.bt-top a {
+  text-decoration: none;
+  font-size: 1.3rem;
 }
