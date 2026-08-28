@@ -11,12 +11,15 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/projects.css">
   </head>
-  <body>
+  <body id="top">
     <nav> 
       <ul class="nav-links">
-        <li><a href="index.html">← Return to Portfolio</a></li>
-        <li><a href="#projects">GitHub</a></li>
-        <li><a href="#contact">Next Project →</a></li>
+        <li>
+          <a href="index.html">← Return to Portfolio</a>
+        </li>
+        <li>
+          <a href="">Next Project →</a>
+        </li>
       </ul>
     </nav>
 
@@ -48,37 +51,51 @@
     </section>
 
     <section class="section centered-section architecture">
-      <h2>Architecture</h2>
-      <p>
-        The game is organized as a Python package with gameplay logic separated into modules for 
-        game state, player actions, conditions, and payouts. Dataclasses are used to represent 
-        core entities such as player and dealer hands, while the main game loop coordinates each
-        phase of the round.
-      </p>
-      <ul class="centered-section project-list">
-        <h4>Game Loop</h4>
-        <li>
-          Controls round progression and determines when control passes between the player and 
-          dealer.
-        </li>
-        <h4>Game state / models</h4>
-        <li>
-          Stores hands, wagers, bank values, insurance, and route state.
-        </li>
-        <h4>Conditions & Actions</h4>
-        <li>
-          Validates whether actions such as hit, stand, split, or double down are allowed and 
-          applies to them.
-        </li>
-        <h4>Payout Logic</h4>
-        <li>
-          Resolves blackjack, wins, losses, pushes, insurance, and doubled wagers.
-        </li>
-        <h4>Testing</h4>
-        <li>
-          Tests the individual modules and full gameplay paths independently.
-        </li>
-      </ul>
+      <div class="feature-group">
+        <h2>Architecture</h2>
+        <p>
+          The game is organized as a Python package with gameplay logic separated into modules for 
+          game state, player actions, conditions, and payouts. Dataclasses are used to represent 
+          core entities such as player and dealer hands, while the main game loop coordinates each
+          phase of the round.
+        </p>
+        <div class="feature-item">
+          <h4>Game Loop</h4>
+          <p>
+            Controls round progression and determines when control passes between the player and 
+            dealer.
+          </p>
+        </div>
+        
+        <div class="feature-item">
+          <h4>Game State / Models</h4>
+          <p>
+            Stores hands, wagers, bank values, insurance, and round state.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Conditions & Actions</h4>
+          <p>
+            Validates whether actions such as hit, stand, split, or double down are allowed and 
+            applies to them.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Payout Logic</h4>
+          <p>
+            Resolves blackjack, wins, losses, pushes, insurance, and doubled wagers.
+          </p>
+        </div>
+          
+        <div class="feature-item">
+          <h4>Testing</h4>
+          <p>
+            Tests the individual modules and full gameplay paths independently.
+          </p>
+        </div>
+      </div>
       <h3>High Level File Structure</h3>
       <pre class="pre-format">
         blackjack/
@@ -98,7 +115,11 @@
         │
         └─── pyproject.toml
       </pre>
-      <img src="src/media/datatypes_snippet.svg"/>
+      <img 
+        class="code-snippet"
+        src="src/media/datatypes_snippet.svg"
+        alt="Blackjack Python dataclass example"      
+      />
     </section>
 
     <section class="section centered-section features">
@@ -108,95 +129,147 @@
         validation, and payout resolution. More complex actions such as splitting require each 
         hand to maintain its own cards, wager, and outcome state.
       </p>
-      <ul class="centered-section project-list features">
+      <div class="feature-group">
         <h3>Player Actions</h3>
-        <li>
+        <p>
           The player can choose from several actions during a hand, with each action validated
           against the current game state before it is executed.
-        </li>
-        <h4>Hit</h4>
-        <li>
-          Draws another card and reevaulates the hand.
-        </li>
-        <h4>Stand</h4>
-        <li>
-          Ends play for the current hand.
-        </li>
-        <h4>Double Down</h4>
-        <li>
-          Increases the wager, draws one final card, then ends the hand.
-        </li>
-        <h4>Split</h4>
-        <li>
-          Separates a qualifying starting hand into two independently played hands.
-        </li>
-        <h4>Insurance</h4>
-        <li>
-          Allows a side wager when the dealer shows an Ace.
-        </li>
-      </ul>
-      <ul class="centered-section project-list features">
+        </p>
+
+        <div class="feature-item">
+          <h4>Hit</h4>
+          <p>
+            Draws another card and reevaluates the hand.
+          </p>
+        </div>
+        
+        <div class="feature-item">
+          <h4>Stand</h4>
+          <p>
+            Ends play for the current hand.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Double Down</h4>
+          <p>
+            Increases the wager, draws one final card, then ends the hand.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Split</h4>
+          <p>
+            Separates a qualifying starting hand into two independently played hands.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Insurance</h4>
+          <p>
+            Allows a side wager when the dealer shows an Ace.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-group">
         <h3>Rule & Game State Logic</h3>
-        <li>
+        <p>
           Game rules are evaluated continuously as the round progresses, allowing the program to 
           determine which actions are valid and when control should move to the next phase.
-        </li>
-        <h4>Hand Evaluation</h4>
-        <li>
-          Calculates hand totals and sdjusts Ace values between 1 and 11 to avoid unecessary busts.
-        </li>
-        <h4>Action Validation</h4>
-        <li>
-          Checks whether actions such as split or double down are currently allowed.
-        </li>
-        <h4>Turn Progression</h4>
-        <li>
-          Tracks when a player hand is complete and determines when control should move to
-          another hand or to the dealer.
-        </li>
-        <h4>Dealer Logic</h4>
-        <li>
-          Automatically draws or stands according to the dealer rules.
-        </li>
-        <h4>Round Conditions</h4>
-        <li>
-          Detects states such as blackjack, busts, completed hands, and other conditions that can
-          end or alter the round.
-        </li>
-      </ul>
-      <ul class="centered-section project-list features">
+        </p>
+
+        <div class="feature-item">
+          <h4>Hand Evaluation</h4>
+          <p>
+            Calculates hand totals and adjusts Ace values between 1 and 11 to avoid unnecessary 
+            busts.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Action Validation</h4>
+          <p>
+            Checks whether actions such as split or double down are currently allowed.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Turn Progression</h4>
+          <p>
+            Tracks when a player hand is complete and determines when control should move to
+            another hand or to the dealer.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Dealer Logic</h4>
+          <p>
+            Automatically draws or stands according to the dealer rules.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Round Conditions</h4>
+          <p>
+            Detects states such as blackjack, busts, completed hands, and other conditions that
+            can end or alter the round.
+          </p>
+        </div>
+      </div>
+        
+      <div class="feature-group">
         <h3>Outcome & Payout System</h3>
-        <li>
+        <p>
           Once play is complete, the game compares the player and dealer states to determine the 
           result of each hand and update the player's bankroll accordingly.
-        </li>
-        <h4>Blackjack</h4>
-        <li>
-          Applies the blackjack payout when the player has a natural 21.
-        </li>
-        <h4>Standard Win / Loss</h4>
-        <li>
-          Resolves the wager based on the final hand values.
-        </li>
-        <h4>Push</h4>
-        <li>
-          Returns the original wager when the player and dealer tie.
-        </li>
-        <h4>Insurance</h4>
-        <li>
-          Resolves the insurance side bet separately from the main hand.
-        </li>
-        <h4>Double Down</h4>
-        <li>
-          Uses the increased wager when calculating the final payout.
-        </li>
-        <h4>Split Hands</h4>
-        <li>
-          Resolves each split hand independently, allowing different outcomes within the same
-          round.
-        </li>
-      </ul>
-      <h3>Example Game Flow</h3>
+        </p>
+
+        <div class="feature-item">
+          <h4>Blackjack</h4>
+          <p>
+            Applies the blackjack payout when the player has a natural 21.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Standard Win / Loss</h4>
+          <p>
+            Resolves the wager based on the final hand values.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Push</h4>
+          <p>
+            Returns the original wager when the player and dealer tie.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Insurance</h4>
+          <p>
+            Resolves the insurance side bet separately from the main hand.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Double Down</h4>
+          <p>
+            Uses the increased wager when calculating the final payout.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Split Hands</h4>
+          <p>
+            Resolves each split hand independently, allowing different outcomes within the same
+            round.
+          </p>
+        </div>
+      </div>        
+  
+      <h3>Split Hands Flow</h3>
       <pre class="pre-format">
         Initial Deal 
               &darr;
@@ -214,35 +287,58 @@
               &darr;
         Resolve Outcomes
       </pre>
+      <img 
+        class="code-snippet"
+        src="src/media/actions_snippet.svg"
+        alt="Blackjack split hand implementation in Python"
+      />
     </section>
-    <section class="section centered-section project-list testing">
-      <ul class="centered-section project-list testing">
-        <h3>Testing</h3>
-        <li>
-          The project uses pytest to verify both individual game components and complete gameplay
-          paths, including edge cases around splitting, insurance, dealer behavior, and round 
-          resolution.
-        </li>
+    
+    <section class="section centered-section testing">
+      <h3>Testing</h3>
+      <p>
+        The project uses pytest to verify both individual game components and complete gameplay
+        paths, including edge cases around splitting, insurance, dealer behavior, and round 
+        resolution.
+      </p>
+
+      <div class="feature-item">
         <h4>Unit Tests</h4>
-        <li>
+        <p>
           Validate hand values, deck behaviors, wagers, payouts, and game state conditions.
-        </li>
+        </p>
+      </div>
+        
+      <div class="feature-item">
         <h4>Input Simulation</h4>
-        <li>
+        <p>
           Uses <code>monkeypatch</code> to simulate player input during CLI flows.
-        </li>
+        </p>
+      </div>
+
+      <div class="feature-item">
         <h4>Output Verification</h4>
-        <li>
+        <p>
           Uses <code>capsys</code> to confirm expected terminal output.
-        </li>
+        </p>
+      </div>
+     
+      <div class="feature-item">
         <h4>Gameplay Scenarios</h4>
-        <li>
+        <p>
           Tests full round paths such as blackjack, busts, insurance, splits, and dealer
           resolution.
-        </li>
-      </ul>
+        </p>
+      </div>
+      <img
+        class="code-snippet" 
+        src="src/media/test_snippet.svg"
+        alt="pytest monkeypatch test example"
+      />
     </section>
+
     <section class="section centered-section project-list conclusion">
+      <div class="challenges">
         <h3>Challenges / What I Learned</h3>
         <h4>Testing Interactive CLI Behavior</h4>
         <p>
@@ -266,6 +362,10 @@
           responsibilities helped me better understand class design, inheritance, and how 
           assigning responsibility to the correct object can keep a codebase easier to maintain.
         </p>
+      </div>
     </section>
+    <span class="quick-links bt-top">
+      <a href="#top">↑ Back to Top</a>
+    </span>
   </body>
   </html>

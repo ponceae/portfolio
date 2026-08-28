@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 code {
   font-family: Consolas, monospace;
   font-size: 0.98rem;
@@ -5,18 +9,35 @@ code {
   border-radius: 4px;
 }
 
+h4 {
+  margin: 0;
+}
+
 .architecture p,
 .overview p,
-.features p {
+.features p,
+.conclusion p {
   white-space: pre-wrap;
 }
 
-.project-list.conclusion p {
-  padding-bottom: 2rem;
+.section {
+  padding-block: 3rem;
+}
+
+.section h2 {
+  margin: 0 0 1.25rem;
+}
+
+.section h3 {
+  margin: 1.5rem 0 1rem;
+}
+
+.section h4 {
+  margin: 1rem 0 0.25rem;
 }
 
 .section p {
-  margin-bottom: 5px;
+  margin: 0;
   padding: 0;
 }
 
@@ -25,23 +46,53 @@ code {
   width: auto;
 }
 
+.code_snippet {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-top: 1.5rem;
+}
+
+.feature-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 .quick-links {
   padding-bottom: 15px;
 }
 
 .project-list {
-  margin: 0 0 30px;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .project-list li {
-  text-align: center;
+  margin: 0 0 0.75rem;
   font-size: 18px;
 }
 
-.features li {
-  margin: 5px;
+.bt-top a {
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+.challenges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .pre-format {
