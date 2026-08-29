@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <title>Adrien Ponce Portfolio</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/projects.css">
+  </head>
+  <body id="top">
+    <nav> 
+      <ul class="nav-links">
+        <li>
+          <a href="index.html">← Return to Portfolio</a>
+        </li>
+      </ul>
+    </nav>
+
+    <header class="section centered-section header">
+      <h1>Soccer Prediction App</h1>
+      <p><i>Python • FastAPI • React • SQLModel • SQLite</i></p>
+      <p><strong>In Development</strong></p>
+      <span class="quick-links">
+        <a 
+          href="https://github.com/ponceae/blackjack-app" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          View GitHub Repo
+        </a>
+      </span>
+      <!-- <video autoplay muted loop playsinline>
+        <source src="src/media/blackjack-app-demo.mp4">
+      </video> -->
+    </header>
+
+    <section class="section centered-section overview">
+      <h2>Overview</h2>
+      <p>
+        A full stack soccer analytics and prediction application built with React and FastAPI, 
+        using historical match data to present league, team, and matchup statistics. The project 
+        uses normalized team strengths and a Poisson based model to calculate expected goals, win 
+        probabilities, and most likely scorelines.
+      </p>
+    </section>
+
+    <section class="section centered-section architecture">
+      <div class="feature-group">
+        <h2>Architecture</h2>
+        <p>
+          The application is split into a React frontend and FastAPI backend, with separate layers 
+          for API routing, relational data models, and soccer analytics. The backend exposes
+          league, team, and matchup data through REST endpoints while the React interface 
+          organizes those responses into route driven views.
+        </p>
+
+        <h3>High Level File Structure</h3>
+        <pre class="pre-format">
+          soccer-prediction-app/
+          ├─── backend/
+          │    ├─── main.py  
+          │    ├─── analytics.py  
+          │    ├─── database.py
+          │    ├─── models.py 
+          │    ├─── schemas.py    
+          │    ├─── seed.py 
+          │    └─── data/
+          │         └─── ...
+          └─── frontend/ 
+               ├── src/
+               │   ├─── App.jsx 
+               │   ├─── main.jsx 
+               │   ├─── App.css 
+               │   └─── components/
+               │        ├─── LeagueLayout.jsx 
+               │        ├─── LeagueSummary.jsx 
+               │        ├─── LeagueTable.jsx 
+               │        ├─── Matchups.jsx 
+               │        ├─── TeamProfile.jsx
+               │        └─── ...
+               ├─── package.json 
+               └─── vite.config.js
+        </pre>
+
+        <div class="feature-item">
+          <h4>API Layer</h4>
+          <p>
+            <code>main.py</code> defines FastAPI routes for league summaries, standings, historical 
+            matchups, team profiles, and prediction results while using dependencies to provide 
+            database sessions and analytics context.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Analytics Layer</h4>
+          <p>
+            <code>analytics.py</code> contains the statistical calculations used by the API, 
+            including league scoring averages, team attack and defense strengths, expected goals, 
+            Poisson probabilities, outcome rates, and league table statistics.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Database & Models</h4>
+          <p>
+            <code>models.py</code>, <code>schemas.py</code>, and <code>database.py</code> define
+            the relational data structure, API response models, and SQLModel session handling for 
+            teams, competitions, seasons, matches, and team competition membership.  
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>React Frontend</h4>
+          <p>
+            <code>App.jsx</code> manages the application's primary routing and shared data, while 
+            reusable components provide league summaries, standings, match history, team profiles,
+            charts, and season navigation. 
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Data Ingestion</h4>
+          <p>
+            <code>seed.py</code> contains the CSV ingestion and database seeding workflow used to 
+            translate source datasets into the relational model. This part of the project is 
+            currently being refactored as the ingestion process is generalized beyond the original 
+            dataset.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section centered-section data-model">
+      <div class="feature-group">
+        <h2>Data Model & Ingestion</h2>
+        <p>
+          Match data is stored in a relational structure that separates teams, competitions, 
+          seasons, and individual fixtures while preserving the relationships between them. This 
+          allows the same underlying data model to support league standings, team profiles, 
+          historical results, and matchup analytics without duplicating entity data.
+        </p>
+        <img 
+          class="erd-diagram"
+          src="src/media/schema.png"
+          alt="soccer prediction model entity relationship diagram"
+        />
+      </div>
+
+      <h3>Relational Data Model</h3>
+      <div class="feature-item">
+        <h4>Teams</h4>
+        <p>
+          Each club is stored once with a unique ID and name, allowing match records and
+          competition memberships to reference the same team across the application.
+        </p>
+      </div>
+
+      <div class="feature-item">
+        <h4>Competitions & Seasons</h4>
+        <p>
+          Competitions and seasons are stored independently so match and membership data can be 
+          associated with a specific league and time period
+        </p>
+      </div>
+
+      <div class="feature-item">
+        <h4>Matches</h4>
+        <p>
+          Each match references its competition, season, home team, and away team through foreign 
+          keys while storing the result and match statistics used by the analytics layer.
+        </p>
+      </div>
+
+      <div class="feature-item">
+        <h4>Team Competition Membership</h4>
+        <p>
+          <code>TeamCompetition</code> acts as a relational table connecting teams to the 
+          competitions and seasons they participate in, allowing league membership to be 
+          queried independently from individual match records.
+        </p>
+      </div>
+
+      <h3>Data Ingestion</h3>
+      <p></p>
+    </section>
+  </body>
+  </html>

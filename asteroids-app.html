@@ -35,10 +35,20 @@
           View GitHub Repo
         </a>
       </span>
-      <!-- <video autoplay muted loop playsinline>
-        <source src="src/media/cli_blackjack_short_demo.mp4">
-      </video> -->
+      <video autoplay muted loop playsinline>
+        <source src="src/media/asteroids-app-demo.mp4">
+      </video>
     </header>
+
+    <span class="quick-links">
+      <a
+        href="https://ponceae.github.io/asteroids-app/"
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        ▶ Play Live Demo
+      </a>
+    </span>
 
     <section class="section centered-section overview">
       <h2>Overview</h2>
@@ -61,25 +71,26 @@
         </p>
 
         <h3>High Level File Structure</h3>
-      <pre class="pre-format">
-        asteroids-app/
-        ├─── core/
-        │    ├─── constants.js 
-        │    ├─── input-listener.js 
-        │    └─── main.js
-        ├─── entities/ 
-        │    ├─── Asteroid.js 
-        │    ├─── Debris.js 
-        │    ├─── Particle.js 
-        │    └─── Spaceship.js 
-        ├─── utils/
-        │    ├─── Vector2.js 
-        │    ├─── Vector2.test.js 
-        │    └─── math-utils.js
-        ├─── index.html 
-        ├─── style.css 
-        └─── package.json
-      </pre>
+        <pre class="pre-format">
+          asteroids-app/
+          ├─── core/
+          │    ├─── constants.js 
+          │    ├─── input-listener.js 
+          │    └─── main.js
+          ├─── entities/ 
+          │    ├─── Asteroid.js 
+          │    ├─── Debris.js 
+          │    ├─── Particle.js 
+          │    └─── Spaceship.js 
+          ├─── utils/
+          │    ├─── Vector2.js 
+          │    ├─── Vector2.test.js 
+          │    └─── math-utils.js
+          ├─── index.html 
+          ├─── style.css 
+          └─── package.json
+        </pre>
+        
         <div class="feature-item">
           <h4>Core Game Loop</h4>
           <p>
@@ -149,7 +160,7 @@
         <div class="feature-item">
           <h4>Rotation</h4>
           <p>
-            Left and right inputs adjusts the ship's heading, which is reused for movement, 
+            Left and right inputs adjust the ship's heading, which is reused for movement, 
             projectile direction, and rendering its rotated geometry.
           </p>
         </div>
@@ -292,46 +303,44 @@
     </section>
     
     <section class="section centered-section testing">
-      <div class="feature-group">
-        <h3>Testing</h3>
+      <h2>Testing</h2>
+      <p>
+        The project uses Vitest to verify the reusable <code>Vector2</code> math utility that
+        supports movement, positioning, and collision calculations throughout the game. Tests
+        cover both mutating instance methods and static operations across positive, negative,
+        floating point, and zero value inputs.
+      </p>
+
+      <div class="feature-item">
+        <h3>Vector Arithmetic</h3>
         <p>
-          The project uses Vitest to verify the reusable <code>Vector2</code> math utility that
-          supports movement, positioning, and collision calculations throughout the game. Tests
-          cover both mutating instance methods and static operations across positive, negative,
-          floating point, and zero value inputs.
+          Tests vector addition, subtraction, and scalar multiplication using a range of
+          coordinate values.
         </p>
+      </div>
 
-        <div class="feature-item">
-          <h4>Vector Arithmetic</h4>
-          <p>
-            Tests vector addition, subtraction, and scalar multiplication using a range of
-            coordinate values.
-          </p>
-        </div>
+      <div class="feature-item">
+        <h3>Magnitude & Distance</h3>
+        <p>
+          Validates magnitude, squared magnitude, distance, and squared distance calculations 
+          used by movement and collision systems.
+        </p>
+      </div>
 
-        <div class="feature-item">
-          <h4>Magnitude & Distance</h4>
-          <p>
-            Validates magnitude, squared magnitude, distance, and squared distance calculations 
-            used by movement and collision systems.
-          </p>
-        </div>
+      <div class="feature-item">
+        <h3>Normalization & Rotation</h3>
+        <p>
+          Verifies normalized vectors and rotational transformations across positive and negative 
+          angles, including zero magnitude handling.
+        </p>
+      </div>
 
-        <div class="feature-item">
-          <h4>Normalization & Rotation</h4>
-          <p>
-            Verifies normalized vectors and rotational transformations across positive and negative 
-            angles, including zero magnitude handling.
-          </p>
-        </div>
-
-        <div class="feature-item">
-          <h4>Instance & Static Methods</h4>
-          <p>
-            Tests both operations that modify an existing vector and equivalent static methods that 
-            return a new <code>Vector2</code> instance.
-          </p>
-        </div>
+      <div class="feature-item">
+        <h3>Instance & Static Methods</h3>
+        <p>
+          Tests both operations that modify an existing vector and equivalent static methods that 
+          return a new <code>Vector2</code> instance.
+        </p>
       </div>
       <img 
         class="code-snippet"
@@ -342,20 +351,27 @@
 
     <section class="section centered-section conclusion">
       <div class="challenges">
-        <h3>Challenges / What I Learned</h3>
-        <h4></h4>
+        <h2>Challenges / What I Learned</h2>
+        <h3>Supporting Keyboard & Touch Input</h3>
         <p>
-
+          Adding mobile controls required the game to support both keyboard and touch input without 
+          maintaining separate gameplay logic for each platform. I structured the input system
+          around shared action states so keyboard events and on screen controls could trigger 
+          the same movement, rotation, and firing behavior while keeping the game entities 
+          independent of the input method.
         </p>
-        <h4></h4>
+        <h3>Adapting the Game for Mobile Browsers</h3>
         <p>
-
-        </p>
-        <h4></h4>
-        <p>
-          
+          Making a fixed ratio Canvas game usable on mobile introduced layout issues that were 
+          not present on desktop, particularly with browser UI occupying part of the available 
+          screen space on iOS Safari. I adjusted the responsive layout, control positioning, 
+          and landscape presentation so the Canvas and touch controls remained accessible across
+          different viewport sizes.
         </p>
       </div>
     </section>
+    <span class="quick-links bt-top">
+      <a href="#top">↑ Back to Top</a>
+    </span>
   </body>
   </html>

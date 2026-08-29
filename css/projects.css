@@ -30,7 +30,8 @@ h4 {
 .features p,
 .testing p,
 .conclusion p,
-.session-man p {
+.session-man p,
+.data-model p {
   white-space: pre-wrap;
 }
 
@@ -92,7 +93,8 @@ h4 {
 +=============+ 
 */
 
-.code_snippet {
+.code_snippet,
+.erd-diagram {
   display: block;
   width: 100%;
   max-width: 800px;

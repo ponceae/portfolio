@@ -18,7 +18,7 @@
           <a href="index.html">← Return to Portfolio</a>
         </li>
         <li>
-          <a href="">Next Project →</a>
+          <a href="asteroids-app.html">Next Project →</a>
         </li>
       </ul>
     </nav>
@@ -35,10 +35,21 @@
           View GitHub Repo
         </a>
       </span>
-      <!-- <video autoplay muted loop playsinline>
-        <source src="src/media/cli_blackjack_short_demo.mp4">
-      </video> -->
+      <video autoplay muted loop playsinline>
+        <source src="src/media/blackjack-app-demo.mp4">
+      </video>
     </header>
+
+    <span class="quick-links">
+      ⚠️ May take a minute to wake up the Render server. ⚠️
+      <a
+        href="https://blackjack-app-7wfr.onrender.com/"
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        ▶ Play Live Demo
+      </a>
+    </span>
 
     <section class="section centered-section overview">
       <h2>Overview</h2>
@@ -59,41 +70,42 @@
           Jinja templates render that state in the browser.
         </p>
         <h3>High Level File Structure</h3>
-      <pre class="pre-format">
-        blackjack-app/
-        ├── app.py
-        ├── engine/
-        │   ├── actions.py
-        │   ├── conditions.py 
-        │   └── payouts.py 
-        ├── entities/
-        │   ├── bank.py 
-        │   ├── card.py 
-        │   ├── deck.py 
-        │   ├── hand.py 
-        │   ├── models.py 
-        │   ├── player.py 
-        │   └── table.py
-        ├── utils/
-        │   ├── session_utils.py 
-        │   └── validation.py
-        ├── templates/
-        │   ├── index.html 
-        │   └── macros.html
-        ├── static/
-        │   ├── cards/ 
-        │   │   └── ...
-        │   ├── css/ 
-        │   │   └── ...
-        │   └── images/
-        │       └── ...
-        ├─── tests/
-        │    ├── test_actions.py 
-        │    ├── test_conditions.py 
-        │    ├── test_payouts.py 
-        │    └── ...
-        └─── requirements.txt
-      </pre>
+        <pre class="pre-format">
+            blackjack-app/
+            ├── app.py
+            ├── engine/
+            │   ├── actions.py
+            │   ├── conditions.py 
+            │   └── payouts.py 
+            ├── entities/
+            │   ├── bank.py 
+            │   ├── card.py 
+            │   ├── deck.py 
+            │   ├── hand.py 
+            │   ├── models.py 
+            │   ├── player.py 
+            │   └── table.py
+            ├── utils/
+            │   ├── session_utils.py 
+            │   └── validation.py
+            ├── templates/
+            │   ├── index.html 
+            │   └── macros.html
+            ├── static/
+            │   ├── cards/ 
+            │   │   └── ...
+            │   ├── css/ 
+            │   │   └── ...
+            │   └── images/
+            │       └── ...
+            ├─── tests/
+            │    ├── test_actions.py 
+            │    ├── test_conditions.py 
+            │    ├── test_payouts.py 
+            │    └── ...
+            └─── requirements.txt
+        </pre>
+        
         <div class="feature-item">
           <h4>Flask Web Layer</h4>
           <p>
