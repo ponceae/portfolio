@@ -26,16 +26,13 @@
       <p><strong>In Development</strong></p>
       <span class="quick-links">
         <a 
-          href="https://github.com/ponceae/blackjack-app" 
+          href="https://github.com/ponceae/soccer-prediction-app" 
           target="_blank" 
           rel="noopener noreferrer"
         >
           View GitHub Repo
         </a>
       </span>
-      <!-- <video autoplay muted loop playsinline>
-        <source src="src/media/blackjack-app-demo.mp4">
-      </video> -->
     </header>
 
     <section class="section centered-section overview">
@@ -148,44 +145,394 @@
           src="src/media/schema.png"
           alt="soccer prediction model entity relationship diagram"
         />
-      </div>
+        <h3>Relational Data Model</h3>
+        <div class="feature-item">
+          <h4>Teams</h4>
+          <p>
+            Each club is stored once with a unique ID and name, allowing match records and
+            competition memberships to reference the same team across the application.
+          </p>
+        </div>
 
-      <h3>Relational Data Model</h3>
-      <div class="feature-item">
-        <h4>Teams</h4>
+        <div class="feature-item">
+          <h4>Competitions & Seasons</h4>
+          <p>
+            Competitions and seasons are stored independently so match and membership data can be 
+            associated with a specific league and time period
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Matches</h4>
+          <p>
+            Each match references its competition, season, home team, and away team through foreign 
+            keys while storing the result and match statistics used by the analytics layer.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Team Competition Membership</h4>
+          <p>
+            <code>TeamCompetition</code> acts as a relational table connecting teams to the 
+            competitions and seasons they participate in, allowing league membership to be 
+            queried independently from individual match records.
+          </p>
+        </div>
+
+        <h3>Data Ingestion</h3>
         <p>
-          Each club is stored once with a unique ID and name, allowing match records and
-          competition memberships to reference the same team across the application.
+          Historical match data is imported from CSV files and translated into the relational 
+          database structure before it is consumed by the API or analytics later. The ingestion 
+          process handles source specific team naming, type conversion, database ID lookups, and 
+          matchweek assignment before creating match records.
         </p>
-      </div>
+        <div class="feature-item">
+          <h4>Team Name Normalization</h4>
+          <p>
+            A lookup table converts abbreviated or alternate source names into the canonical team 
+            names stored in the database.
+          </p>
+        </div>
 
-      <div class="feature-item">
-        <h4>Competitions & Seasons</h4>
-        <p>
-          Competitions and seasons are stored independently so match and membership data can be 
-          associated with a specific league and time period
-        </p>
-      </div>
+        <div class="feature-item">
+          <h4>Database ID Mapping</h4>
+          <p>
+            Existing teams are loaded into a lookup dictionary so CSV team names can be translated 
+            into the foreign key IDs required by match records.
+          </p>
+        </div>
 
-      <div class="feature-item">
-        <h4>Matches</h4>
-        <p>
-          Each match references its competition, season, home team, and away team through foreign 
-          keys while storing the result and match statistics used by the analytics layer.
-        </p>
-      </div>
+        <div class="feature-item">
+          <h4>Data Transformation</h4>
+          <p>
+            CSV values are converted into application types such as dates and integers before being 
+            used to create SQLModel objects.
+          </p>
+        </div>
 
-      <div class="feature-item">
-        <h4>Team Competition Membership</h4>
-        <p>
-          <code>TeamCompetition</code> acts as a relational table connecting teams to the 
-          competitions and seasons they participate in, allowing league membership to be 
-          queried independently from individual match records.
-        </p>
-      </div>
+        <div class="feature-item">
+          <h4>Matchweek Calculation</h4>
+          <p>
+            When the source data does not provide an explicit matchweek, the importer tracks each 
+            team's games played to determine the corresponding round.
+          </p>
+        </div>
 
-      <h3>Data Ingestion</h3>
-      <p></p>
+        <div class="feature-item">
+          <h4>Current Refactor</h4>
+          <p>
+            The original importer was designed around a specific dataset. The seeding workflow is 
+            currently being generalized so table loading, validation, and filename metadata 
+            parsing can support additional leagues and seasons with less dataset specific logic.
+          </p>
+        </div>
+      </div>
     </section>
+
+    <section class="section centered-section data-model">
+      <div class="feature-group">
+        <h2>Analytics & Prediction Model</h2>
+        <p>
+          The application uses historical match results to calculate league scoring baselines and 
+          team specific attacking and defensive strengths. These values are combined into 
+          expected goal estimates and Poisson distributions that model possible scorelines and 
+          matchup outcomes.
+        </p>
+
+        <h3>Analytics Pipeline</h3>
+        <pre class="pre-format">
+          Historical Match Results 
+                          &darr;
+          League Home / Away Goal Averages
+                          &darr;
+          Team Attack / Defenses Strengths
+                          &darr;
+          Matchup Expected Goals
+                          &darr;
+          Home / Away Poisson Distributions
+                          &darr;
+          Score Probability Matrix
+                          &darr;
+          Win / Draw / Loss + Likely Scoreline 
+        </pre>
+
+        <h3>Prediction Pipeline</h3>
+        <div class="feature-item">
+          <h4>League Goal Averages</h4>
+          <p>
+            Home and away scoring averages are calculated independently for each competition and 
+            season, providing baseline values used throughout the prediction model.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Team Strengths</h4>
+          <p>
+            Each team's home and away attacking and defensive performance is measured relative to 
+            the corresponding league scoring averages, producing normalized strength values for 
+            different match contexts.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Expected Goals</h4>
+          <p>
+            For a matchup, the home team's attacking strength is combined with the away team's 
+            defensive strength and the league home scoring average. The same calculation is 
+            performed for the away side to produce separate expected goal values.
+          </p>
+        </div>
+
+        <img 
+          class="code-snippet"
+          src="src/media/backend_analytics_snippet.svg"
+          alt="Python expected goals function"      
+        />
+
+        <div class="feature-item">
+          <h4>Poisson Distributions</h4>
+          <p>
+            The expected goal values are used to generate scoring probabilities from 0 through 8 
+            goals for each team using the Poisson probability mass function.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Outcome Probabilities</h4>
+          <p>
+            Home and away scoring distributions are combined into a score matrix representing 
+            possible match results. The matrix is grouped into home wins, draws, and away wins 
+            before the probabilities are normalized.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Likely Scoreline</h4>
+          <p>
+            The highest probability cell in the score matrix is selected as the model's most likely 
+            final score.
+          </p>
+        </div>
+
+        <h3>Supporting Analytics</h3>
+        <div class="feature-item">
+          <p>
+            The same analytics layer also calculates team win, draw, and loss rates, points per 
+            game, league table statistics, both teams to score rates, and the frequency of matches 
+            finishing with more than 2.5 goals.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section centered-section frontend">
+      <div class="feature-group">
+        <h2>Frontend & API Integration</h2>
+        <p>
+          The React frontend consumes the FastAPI backend to build league and team views from the 
+          same underlying statistical data. URL parameters identify the active competition, season, 
+          and team, allowing components to request the appropriate API data and update the
+          interface as the user navigates through the application.
+        </p>
+
+        <h3>Route Driven Views</h3>
+        <p>
+          React Router organizes the interface around league and team URLs, with competition and 
+          season IDs carried directly through the route structure.
+        </p>
+
+        <img 
+          class="code-snippet"
+          src="src/media/nested_routes_snippet.svg"
+          alt="JSX nested routes algorithm"
+        />
+
+        <div class="feature-item">
+          <h4>League Layout</h4>
+          <p>
+            <code>LeagueLayout</code> provides a shared layout for league specific pages while
+            nested routes switch between the summary, standings, and historical matchup views.
+          </p>  
+        </div>  
+
+        <div class="feature-item">
+          <h4>Team Profiles</h4>
+          <p>
+            Selecting a club from the league table navigates to a dedicated team route containing 
+            the competition, season, and team IDs required to retrieve its profile.
+          </p>  
+        </div>
+
+        <div class="feature-item">
+          <h4>Season Navigation</h4>
+          <p>
+            The season selector updates the active route, causing dependent components to request 
+            statistics for the newly selected season without requiring a separate page structure.
+          </p>  
+        </div>
+
+        <h3>API Integration</h3>
+        <p>
+          Frontend components request data from FastAPI based on the active route and manage their 
+          own loading, error, and response state.
+        </p>
+        <div class="feature-item">
+          <h4>League Navigation</h4>
+          <p>
+            The sidebar loads structured menu data from the backend and groups available 
+            competitions and seasons by country.
+          </p>  
+        </div>
+
+        <div class="feature-item">
+          <h4>League Statistics</h4>
+          <p>
+            The summary view retrieves scoring averages, both teams to score rates, and over/under 
+            statistics, while the table view displays calculated league standings.
+          </p>  
+        </div>
+
+        <div class="feature-item">
+          <h4>Historical Matchups</h4>
+          <p>
+            Match results are grouped by matchweek and presented in a navigable list with a 
+            matchweek selector for moving through the season.
+          </p>  
+        </div>
+
+        <div class="feature-item">
+          <h4>Team Analytics</h4>
+          <p>
+            Team profiles retrieve points per game, outcome rates, and normalized attacking and 
+            defensive strengths from a combined backend profile endpoint.
+          </p>  
+        </div>
+
+        <h3>Reusable Visualization Components</h3>
+        <p>
+          Statistical responses are transformed into reusable React and Rechart components rather 
+          than being displayed as raw API values.
+        </p>
+        <div class="feature-item">
+          <h4>League Summary Charts</h4>
+          <p>
+            Reusable donut charts visualize both teams to score and over/under 2.5 goal rates 
+            alongside season level summary statistics.
+          </p>  
+        </div>
+
+        <div class="feature-item">
+          <h4>Outcome Visualization</h4>
+          <p>
+            Team win, draw, and loss rates are presented as a stacked horizontal bar for quick 
+            comparison.
+          </p>  
+        </div>
+
+        <div class="feature-item">
+          <h4>Strength Profile</h4>
+          <p>
+            A radar chart displays normalized home and away attacking and defensive strengths for 
+            the selected team.
+          </p>  
+        </div>
+      </div>
+    </section>
+
+    <section class="section centered-section conclusion">
+      <div class="challenges">
+        <h2>Challenges / What I Learned</h2>
+        <h3>Generalizing the Data Ingestion Pipeline</h3>
+        <p>
+          The original seeding process was built around a known dataset, so assumptions about 
+          filenames, table structure, team names, and validation could be handled directly inside 
+          the importer. As I began planning support for additional leagues and seasons, that 
+          approach became difficult to extend. I started separating filename metadata parsing,
+          normalization, validation, and database loading into distinct responsibilities so the 
+          ingestion process could eventually work across multiple datasets without duplicating 
+          table specific logic.
+        </p>
+        <h3>Evolving The API Around Frontend Requirements</h3>
+        <p>
+          Some backend routes that initially made sense in isolation became less useful once the 
+          React frontend began consuming them. As league tables, team profiles, season navigation, 
+          and historical match views developed, I refactored endpoints and analytics calls to 
+          consistently use competition, season, and team context and to return data in forms 
+          better suited to the interface. This taught me that API design is often iterative and 
+          that the needs of the frontend can expose weaknesses in an otherwise functional backend 
+          structure.
+        </p>
+      </div>
+    </section>
+
+    <section class="section centered-section roadmap">
+      <div>
+        <h2>Current Status / Roadmap</h2>
+        <p>
+          The application currently supports historical league and team analytics through a 
+          React frontend backed by FastAPI, SQLModel, and SQLite. The prediction model is 
+          implemented on the backend, while data ingestion and additional frontend prediction 
+          features are still being developed.
+        </p>
+
+        <h3>Current</h3>
+        <ul class="roadmap-list">
+          <li>
+            League dashboard with season level statistics.
+          </li>
+          <li>
+            League tables and historical matchweek results.
+          </li>
+          <li>
+            Team profiles with outcome rates, points per game, and strength metrics.
+          </li>
+          <li>
+            Poisson based expected goals, outcome probabilities, and likely scoreline calculations.
+          </li>
+          <li>
+            Relational storage for teams, competitions, seasons, and matches.
+          </li>
+        </ul>
+
+        <h3>Planned</h3>
+        <ul class="roadmap-list">
+          <li>
+            Complete the generalized data ingestion pipeline
+          </li>
+          <li>
+            Add additional leagues, teams, and seasons.
+          </li>
+          <li>
+            Add team players and their corresponding statistical data.
+          </li>
+          <li>
+            Implement new tables to support the player statistics.
+          </li>
+          <li>
+            Surface matchup predictions in the React interface.
+          </li>
+          <li>
+            Expand league and team statistics.
+          </li>
+          <li>
+            Add upcoming and live match data.
+          </li>
+          <li>
+            Migrate from SQLite to PostgreSQL as the dataset grows.
+          </li>
+          <li>
+            Deploy the full stack application.
+          </li>
+          <li>
+            Explore machine learning enhancements to the prediction model as more data becomes 
+            available.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <span class="quick-links bt-top">
+      <a href="#top">↑ Back to Top</a>
+    </span>
   </body>
   </html>
