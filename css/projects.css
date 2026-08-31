@@ -25,18 +25,6 @@ h4 {
 +================+ 
 */
 
-.architecture p,
-.overview p,
-.features p,
-.testing p,
-.conclusion p,
-.session-man p,
-.data-model p,
-.frontend p,
-.roadmap p {
-  white-space: pre-wrap;
-}
-
 .section {
   padding-block: 3rem;
 }
@@ -56,6 +44,8 @@ h4 {
 .section p {
   margin: 0;
   padding: 0;
+  max-width: 850px;
+  white-space: normal;
 }
 
 .section video {
@@ -117,6 +107,12 @@ h4 {
   margin-bottom: 0.5rem;
 }
 
+.server-warning {
+  text-align: center;
+  line-height: 1.5;
+  padding-inline: 1.25rem;
+}
+
 /* 
 +=============+
   -- MEDIA -- 
@@ -133,11 +129,12 @@ h4 {
 }
 
 .pre-format {
-  margin: 0;
-  padding: 0;
+  width: max-content;
   max-width: 100%;
+  margin-inline: auto;
   overflow-x: auto;
   font-family: 'Montserrat', sans-serif;
+  text-align: left;
 }
 
 /* 
@@ -173,8 +170,6 @@ h4 {
   }
 
   .pre-format {
-    width: 100%;
-    overflow-x: auto;
     font-size: 0.85rem;
   }
 
